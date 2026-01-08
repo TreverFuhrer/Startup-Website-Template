@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import type { ComponentPropsWithoutRef } from "react";
+import type { HTMLMotionProps } from "framer-motion";
 
 import { fadeIn, fadeUp, scaleIn } from "../../motion/variants";
 import { useReducedMotionPref } from "../../motion/useReducedMotionPref";
 
 type VariantName = "fadeUp" | "fadeIn" | "scaleIn";
 
-type MotionItemProps = ComponentPropsWithoutRef<"div"> & {
+type MotionItemProps = HTMLMotionProps<"div"> & {
   variant?: VariantName;
 };
 

@@ -2,4 +2,4 @@
 
 import { useReducedMotion } from "framer-motion";
 
-export const useReducedMotionPref = () => useReducedMotion();
+export const useReducedMotionPref = () => useReducedMotion() ?? false;

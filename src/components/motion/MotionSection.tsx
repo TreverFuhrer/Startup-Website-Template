@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { MotionProps } from "framer-motion";
+import { forwardRef } from "react";
 import type { ComponentPropsWithoutRef } from "react";
 
 import { Section } from "../layout/Section";
@@ -9,7 +11,8 @@ import { useReducedMotionPref } from "../../motion/useReducedMotionPref";
 
 type VariantName = "fadeUp" | "fadeIn" | "scaleIn" | "staggerChildren";
 
-type MotionSectionProps = ComponentPropsWithoutRef<typeof Section> & {
+type MotionSectionProps = Omit<ComponentPropsWithoutRef<typeof Section>, keyof MotionProps> &
+  MotionProps & {
   variant?: VariantName;
   once?: boolean;
   amount?: number;
@@ -23,16 +26,15 @@ const variantsByName = {
   staggerChildren,
 };
 
-export const MotionSection = ({
-  variant = "fadeUp",
-  once = true,
-  amount = 0.2,
-  ...props
-}: MotionSectionProps) => {
+export const MotionSection = forwardRef<HTMLElement, MotionSectionProps>(function MotionSection(
+  { variant = "fadeUp", once = true, amount = 0.2, ...props },
+  ref,
+) {
   const reducedMotion = useReducedMotionPref();
 
   return (
     <MotionSectionRoot
+      ref={ref}
       variants={variantsByName[variant](reducedMotion)}
       initial="hidden"
       whileInView="show"
@@ -40,4 +42,4 @@ export const MotionSection = ({
       {...props}
     />
   );
-};
+});
