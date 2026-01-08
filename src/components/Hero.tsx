@@ -9,12 +9,16 @@ import { MotionItem } from "./motion/MotionItem";
 import { MotionSection } from "./motion/MotionSection";
 import { companyConfig } from "@/content";
 
-export const Hero = () => {
-  const { hero } = companyConfig.homepage.sections;
+type HeroProps = {
+  id?: string;
+};
+
+export const Hero = ({ id = "top" }: HeroProps) => {
+  const { hero } = companyConfig.homepage;
 
   return (
     <MotionSection
-      id="top"
+      id={id}
       variant="staggerChildren"
       className="relative overflow-clip bg-(--ink) bg-[linear-gradient(to_bottom,#06070b,#0b1f2a_40%,#0b3a3a_70%,#115e59_88%)] text-white"
     >

@@ -4,9 +4,13 @@ import { MotionSection } from "./motion/MotionSection";
 import { LogosMarquee } from "./socialproof/LogosMarquee";
 import { logosSection } from "@/content";
 
-export const LogoTicker = () => {
+type LogoTickerProps = {
+  id?: string;
+};
+
+export const LogoTicker = ({ id = "customers" }: LogoTickerProps) => {
   return(
-    <MotionSection id="customers" variant="staggerChildren" className="section-block bg-(--ink) text-white">
+    <MotionSection id={id} variant="staggerChildren" className="section-block bg-(--ink) text-white">
       <Container>
         {/* Replace this with your social proof headline. */}
         <MotionItem>

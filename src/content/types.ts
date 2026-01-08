@@ -40,38 +40,32 @@ export type SiteConfig = {
 
 export type HomeSectionKey = "hero" | "logos" | "features" | "product" | "faqs" | "pricing" | "cta";
 
-type BaseSectionConfig = {
-  id: string;
+export type HomeSectionConfig = {
+  key: HomeSectionKey;
   enabled: boolean;
+  navId: string;
 };
 
 export type CompanyConfig = {
   homepage: {
-    order: HomeSectionKey[];
-    sections: {
-      hero: BaseSectionConfig & {
-        badge: string;
-        headline: string;
-        subheadline: string;
-        description: string;
-        primaryCta: {
-          label: string;
-          href: string;
-        };
+    sections: HomeSectionConfig[];
+    hero: {
+      badge: string;
+      headline: string;
+      subheadline: string;
+      description: string;
+      primaryCta: {
+        label: string;
+        href: string;
       };
-      logos: BaseSectionConfig;
-      features: BaseSectionConfig;
-      product: BaseSectionConfig;
-      faqs: BaseSectionConfig;
-      pricing: BaseSectionConfig;
-      cta: BaseSectionConfig & {
-        headline: string;
-        description: string;
-        inputPlaceholder: string;
-        primaryCta: {
-          label: string;
-          href?: string;
-        };
+    };
+    cta: {
+      headline: string;
+      description: string;
+      inputPlaceholder: string;
+      primaryCta: {
+        label: string;
+        href?: string;
       };
     };
   };

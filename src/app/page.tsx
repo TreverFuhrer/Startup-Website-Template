@@ -9,20 +9,21 @@ import { CallToAction } from "@/components/CallToAction";
 import { Footer } from "@/components/Footer";
 import { Pricing } from "@/components/Pricingdemo";
 import { companyConfig, type HomeSectionKey } from "@/content";
+import { cloneElement } from "react";
 import type { ReactElement } from "react";
 
-const sectionComponents: Record<HomeSectionKey, () => ReactElement> = {
-  hero: Hero,
-  logos: LogoTicker,
-  features: Features,
-  product: ProductShowcase,
-  faqs: FAQs,
-  pricing: Pricing,
-  cta: CallToAction,
+const SECTION_COMPONENTS: Record<HomeSectionKey, ReactElement<{ id?: string }>> = {
+  hero: <Hero />,
+  logos: <LogoTicker />,
+  features: <Features />,
+  product: <ProductShowcase />,
+  faqs: <FAQs />,
+  pricing: <Pricing />,
+  cta: <CallToAction />,
 };
 
 export default function Home() {
-  const { order, sections } = companyConfig.homepage;
+  const { sections } = companyConfig.homepage;
 
   return (
     <>
@@ -31,13 +32,13 @@ export default function Home() {
         <Navbar />
         <main>
           {/* Reorder sections in content/company.ts to reshape the page flow. */}
-          {order.map((sectionKey) => {
-            if (!sections[sectionKey].enabled) {
+          {sections.map((section) => {
+            if (!section.enabled) {
               return null;
             }
 
-            const SectionComponent = sectionComponents[sectionKey];
-            return <SectionComponent key={sectionKey} />;
+            const sectionElement = SECTION_COMPONENTS[section.key];
+            return cloneElement(sectionElement, { id: section.navId, key: section.key });
           })}
         </main>
         <Footer />

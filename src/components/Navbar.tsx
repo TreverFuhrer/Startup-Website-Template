@@ -1,8 +1,11 @@
 
 import { LogoIcon, MenuIcon } from "./icons";
 import { Container } from "./layout/Container";
+import { siteConfig } from "@/content";
 
 export const Navbar = () => {
+  const navItems = siteConfig.nav;
+
   return (
     <header className="bg-(--ink)">
       <Container>
@@ -21,42 +24,21 @@ export const Navbar = () => {
           </button>
           {/* Keep these links aligned with the section ids below. */}
           <nav className="hidden items-center gap-6 text-white sm:flex" aria-label="Primary">
-            <a
-              href="#about"
-              className="text-white/60 transition hover:text-white"
-            >
-              About
-            </a>
-            <a
-              href="#app"
-              className="text-white/60 transition hover:text-white"
-            >
-              App
-            </a>
-            <a
-              href="#customers"
-              className="text-white/60 transition hover:text-white"
-            >
-              Logos
-            </a>
-            <a
-              href="#faqs"
-              className="text-white/60 transition hover:text-white"
-            >
-              FAQs
-            </a>
-            <a
-              href="#pricing"
-              className="text-white/60 transition hover:text-white"
-            >
-              Pricing
-            </a>
-            <a
-              href="#cta"
-              className="rounded-lg bg-white px-4 py-2 text-black"
-            >
-              Primary CTA
-            </a>
+            {navItems.map((item) => {
+              const isPrimary = item.variant === "primary";
+              const className = isPrimary
+                ? "rounded-lg bg-white px-4 py-2 text-black"
+                : "text-white/60 transition hover:text-white";
+              const href = item.type === "anchor" ? `/${item.href}` : item.href;
+              const target = item.type === "external" && item.newTab !== false ? "_blank" : undefined;
+              const rel = target ? "noreferrer" : undefined;
+
+              return (
+                <a key={`${item.label}-${item.href}`} href={href} className={className} target={target} rel={rel}>
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
         </div>
       </Container>

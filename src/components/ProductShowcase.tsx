@@ -5,9 +5,13 @@ import { Container } from "./layout/Container";
 import { MotionItem } from "./motion/MotionItem";
 import { MotionSection } from "./motion/MotionSection";
 import { AppScreenshotScrollEffect } from "./product/AppScreenshotScrollEffect";
-export const ProductShowcase = () => {
+type ProductShowcaseProps = {
+  id?: string;
+};
+
+export const ProductShowcase = ({ id = "app" }: ProductShowcaseProps) => {
   return (
-    <MotionSection id="app" variant="staggerChildren" className="section-block bg-(--ink) text-white bg-linear-to-b from-(--ink) to-[#0b3a3a]">
+    <MotionSection id={id} variant="staggerChildren" className="section-block bg-(--ink) text-white bg-linear-to-b from-(--ink) to-[#0b3a3a]">
       <Container>
         {/* App section headline. */}
         <MotionItem>

@@ -10,8 +10,12 @@ import { MotionSection } from "./motion/MotionSection";
 import { useReducedMotionPref } from "../motion/useReducedMotionPref";
 import { companyConfig } from "@/content";
 
-export const CallToAction = () => {
-  const { cta } = companyConfig.homepage.sections;
+type CallToActionProps = {
+  id?: string;
+};
+
+export const CallToAction = ({ id = "cta" }: CallToActionProps) => {
+  const { cta } = companyConfig.homepage;
   const reducedMotion = useReducedMotionPref();
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -22,7 +26,7 @@ export const CallToAction = () => {
 
   return (
     <MotionSection
-      id="cta"
+      id={id}
       ref={sectionRef}
       variant="staggerChildren"
       className="section-block bg-(--ink) text-white"

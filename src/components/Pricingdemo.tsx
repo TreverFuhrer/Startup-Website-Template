@@ -3,10 +3,14 @@ import { Container } from "./layout/Container";
 import { Section } from "./layout/Section";
 import { pricingSection } from "@/content";
 
-export const Pricing = () => {
+type PricingProps = {
+  id?: string;
+};
+
+export const Pricing = ({ id = "pricing" }: PricingProps) => {
   return (
 
-    <Section id="pricing" className="section-block bg-(--ink) text-white bg-linear-to-b from-(--ink) via-[#0b3a3a] to-(--ink) ">
+    <Section id={id} className="section-block bg-(--ink) text-white bg-linear-to-b from-(--ink) via-[#0b3a3a] to-(--ink) ">
 
       <Container>
         {/* Pricing headline. */}

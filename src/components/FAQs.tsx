@@ -48,9 +48,13 @@ const AccordionItem = ({question, answer}:{question:string, answer: string}) => 
   )
 }
 
-export const FAQs = () => {
+type FAQsProps = {
+  id?: string;
+};
+
+export const FAQs = ({ id = "faqs" }: FAQsProps) => {
   return (
-    <MotionSection id="faqs" variant="staggerChildren" className="section-block bg-(--ink) text-white bg-linear-to-b from-[#0b3a3a] to-(--ink) ">
+    <MotionSection id={id} variant="staggerChildren" className="section-block bg-(--ink) text-white bg-linear-to-b from-[#0b3a3a] to-(--ink) ">
       <Container>
         {/* FAQ headline goes here. */}
         <MotionItem>

@@ -3,10 +3,14 @@ import { Container } from "./layout/Container";
 import { MotionItem } from "./motion/MotionItem";
 import { MotionSection } from "./motion/MotionSection";
 
-export const Features = () => {
+type FeaturesProps = {
+  id?: string;
+};
+
+export const Features = ({ id = "about" }: FeaturesProps) => {
   return (
 
-    <MotionSection id="about" variant="staggerChildren" className="section-block bg-(--ink) text-white">
+    <MotionSection id={id} variant="staggerChildren" className="section-block bg-(--ink) text-white">
 
       <Container>
         {/* About section headline. */}
