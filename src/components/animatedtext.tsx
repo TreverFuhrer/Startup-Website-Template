@@ -12,7 +12,7 @@ export function AnimatedGradientTextDemo() {
         ✶ <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />{" "}
         <span
           className={cn(
-            `inline animate-gradient bg-linear-to-r from-(--brand-2) via-(--brand-3) to-(--brand-2) bg-size-[var(--bg-size)_100%] bg-clip-text text-transparent`,
+            `inline animate-gradient motion-reduce:animate-none bg-linear-to-r from-(--brand-2) via-(--brand-3) to-(--brand-2) bg-size-[var(--bg-size)_100%] bg-clip-text text-transparent`,
           )}
         >
           Badge Text

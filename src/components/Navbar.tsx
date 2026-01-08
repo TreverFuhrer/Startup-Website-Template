@@ -1,10 +1,11 @@
 
 import { LogoIcon, MenuIcon } from "./icons";
+import { Container } from "./layout/Container";
 
 export const Navbar = () => {
   return (
     <header className="bg-(--ink)">
-      <div className="container">
+      <Container>
         <div className="flex items-center justify-between py-4">
           {/* Swap this logo and label with your brand. */}
           <a href="#top" className="relative" aria-label="Brand">
@@ -58,7 +59,7 @@ export const Navbar = () => {
             </a>
           </nav>
         </div>
-      </div>
+      </Container>
     </header>
   );
 };

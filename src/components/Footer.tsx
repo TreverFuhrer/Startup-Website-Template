@@ -1,10 +1,11 @@
 
 import { InstaIcon, XIcon, LinkedInIcon, YoutubeIcon } from "./icons";
+import { Container } from "./layout/Container";
 
 export const Footer = () => {
   return(
     <footer className='py-5 bg-(--ink) text-white/60 border-t border-white/10'>
-    <div className="container">
+    <Container>
       <div className='flex flex-col gap-5 sm:flex-row sm:justify-between'>
         {/* Update the footer label to your company name. */}
         <div className="text-center">Copyright 2024 Company Name. All rights reserved.</div>
@@ -33,7 +34,7 @@ export const Footer = () => {
         </ul>
       </div>
 
-    </div>
+    </Container>
     </footer>
   )
 };

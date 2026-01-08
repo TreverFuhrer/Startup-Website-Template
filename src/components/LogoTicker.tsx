@@ -1,13 +1,20 @@
-import LogoCarousel from "./companylogos";
+import { Container } from "./layout/Container";
+import { MotionItem } from "./motion/MotionItem";
+import { MotionSection } from "./motion/MotionSection";
+import { LogosMarquee } from "./socialproof/LogosMarquee";
 
 export const LogoTicker = () => {
   return(
-    <section id="customers" className="section-block bg-(--ink) py-18 text-white sm:py-24">
-      <div className="container">
+    <MotionSection id="customers" variant="staggerChildren" className="section-block bg-(--ink) text-white">
+      <Container>
         {/* Replace this with your social proof headline. */}
-        <h2 className="mb-16 text-center text-lg text-white/70">Title</h2>
-        <LogoCarousel/>
-      </div>
-    </section>
+        <MotionItem>
+          <h2 className="mb-16 text-center text-lg text-white/70">Title</h2>
+        </MotionItem>
+        <MotionItem variant="fadeIn">
+          <LogosMarquee/>
+        </MotionItem>
+      </Container>
+    </MotionSection>
   )
 };

@@ -26,6 +26,36 @@ body {
   contain-intrinsic-size: 900px;
 }
 
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: logo-marquee 25s linear infinite;
+  will-change: transform;
+}
+
+.logo-marquee-track > ul {
+  flex-shrink: 0;
+}
+
+.logo-marquee:hover .logo-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee-track {
+    animation: none;
+  }
+}
+
 /* Keeps the layout centered even if Tailwind config isn't picked up. */
 .container {
   width: 100%;

@@ -1,11 +1,13 @@
 import PricingTable from './pricing';
+import { Container } from "./layout/Container";
+import { Section } from "./layout/Section";
 
 export const Pricing = () => {
   return (
 
-    <section id="pricing" className="section-block bg-(--ink) text-white bg-linear-to-b from-(--ink) via-[#0b3a3a] to-(--ink) py-18 sm:py-24 ">
+    <Section id="pricing" className="section-block bg-(--ink) text-white bg-linear-to-b from-(--ink) via-[#0b3a3a] to-(--ink) ">
 
-      <div className="container">
+      <Container>
         {/* Pricing headline. */}
         <h2 className="text-center font-bold text-5xl sm:text-6xl tracking-tighter">Pricing</h2>
         <div className='max-w-xl mx-auto'>
@@ -19,9 +21,9 @@ export const Pricing = () => {
 
         </div>
 
-      </div>
+      </Container>
 
 
-    </section>
+    </Section>
   )
 }
