@@ -68,7 +68,7 @@ const AccordionItem = ({question, answer}:{question:string, answer: string}) => 
 
 export const FAQs = () => {
   return (
-    <section id="faqs" className="bg-(--ink) text-white py-[72px] sm:py-24 bg-gradient-to-b from-[#0b3a3a] to-(--ink) ">
+    <section id="faqs" className="section-block bg-(--ink) text-white py-[72px] sm:py-24 bg-gradient-to-b from-[#0b3a3a] to-(--ink) ">
       <div className="container">
         {/* FAQ headline goes here. */}
         <h2 className="text-5xl sm:text-6xl sm:w-[648px] mx-auto text-center text-white tracking-tighter">

@@ -3,7 +3,7 @@ import PricingTable from './pricing';
 export const Pricing = () => {
   return (
 
-    <section id="pricing" className="bg-(--ink) text-white bg-gradient-to-b from-(--ink) via-[#0b3a3a] to-(--ink) py-[72px] sm:py-24 ">
+    <section id="pricing" className="section-block bg-(--ink) text-white bg-gradient-to-b from-(--ink) via-[#0b3a3a] to-(--ink) py-[72px] sm:py-24 ">
 
       <div className="container">
         {/* Pricing headline. */}

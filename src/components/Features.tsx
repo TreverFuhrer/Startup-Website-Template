@@ -3,7 +3,7 @@ import BentoDemo from "./bentogrid";
 export const Features = () => {
   return (
 
-    <section id="about" className="bg-(--ink) py-[72px] text-white sm:py-24">
+    <section id="about" className="section-block bg-(--ink) py-[72px] text-white sm:py-24">
 
       <div className="container">
         {/* About section headline. */}
