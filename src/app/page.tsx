@@ -9,8 +9,9 @@ import { CallToAction } from "@/components/CallToAction";
 import { Footer } from "@/components/Footer";
 import { Pricing } from "@/components/Pricingdemo";
 import { companyConfig, type HomeSectionKey } from "@/content";
+import type { ReactElement } from "react";
 
-const sectionComponents: Record<HomeSectionKey, () => JSX.Element> = {
+const sectionComponents: Record<HomeSectionKey, () => ReactElement> = {
   hero: Hero,
   logos: LogoTicker,
   features: Features,
