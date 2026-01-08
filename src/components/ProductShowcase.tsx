@@ -15,7 +15,7 @@ const rotateX = useTransform(scrollYProgress, [0, 1], [15,0]);
 const opacity = useTransform(scrollYProgress, [0, 1], [.3,1]);
 
   return (
-    <section id="app" className="section-block bg-(--ink) text-white bg-gradient-to-b from-(--ink) to-[#0b3a3a] py-[72px] sm:py-24">
+    <section id="app" className="section-block bg-(--ink) text-white bg-linear-to-b from-(--ink) to-[#0b3a3a] py-18 sm:py-24">
       <div className="container">
         {/* App section headline. */}
         <h2 className="text-center text-5xl font-bold tracking-tighter">Title</h2>

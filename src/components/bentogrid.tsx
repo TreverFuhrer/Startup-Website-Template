@@ -36,7 +36,7 @@ const LogoBeam = () => {
         </div>
         <div className="relative" style={{ width: `${lineWidth}px`, height: `${lineHeight}px`, backgroundColor: 'rgba(255,255,255,0.5)', overflow: 'hidden' }}>
           <motion.div
-            className="absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-transparent via-(--brand-3) to-transparent opacity-75"
+            className="absolute top-0 left-0 h-full w-10 bg-linear-to-r from-transparent via-(--brand-3) to-transparent opacity-75"
             initial={{ x: '-40px' }}
             animate={{ x: `calc(${lineWidth}px + 40px)` }}
             transition={{
@@ -51,7 +51,7 @@ const LogoBeam = () => {
         <div className="relative bg-(--surface) border border-white/40 rounded-2xl flex items-center justify-center w-16 h-16 p-4 overflow-hidden shadow-[0_0_15px_5px_rgba(20,184,166,0.3)]">
           <Image src={logos[1].src} alt={logos[1].alt} width={32} height={32} sizes="32px" className="filter invert brightness-0" />
           <motion.div
-            className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-30"
+            className="absolute top-0 left-0 w-full h-full bg-linear-to-r from-transparent via-white to-transparent opacity-30"
             initial={{ x: '-100%' }}
             animate={{ x: '100%' }}
             transition={{
@@ -65,7 +65,7 @@ const LogoBeam = () => {
         </div>
         <div className="relative" style={{ width: `${lineWidth}px`, height: `${lineHeight}px`, backgroundColor: 'rgba(255,255,255,0.5)', overflow: 'hidden' }}>
           <motion.div
-            className="absolute top-0 right-0 h-full w-10 bg-gradient-to-r from-transparent via-(--brand-3) to-transparent opacity-75"
+            className="absolute top-0 right-0 h-full w-10 bg-linear-to-r from-transparent via-(--brand-3) to-transparent opacity-75"
             initial={{ x: '40px' }}
             animate={{ x: `calc(-${lineWidth}px - 40px)` }}
             transition={{
@@ -137,7 +137,7 @@ const AWSIcon = () => {
          <div className="relative bg-(--surface) border border-white/40 rounded-2xl flex items-center justify-center w-16 h-16 p-4 overflow-hidden shadow-[0_0_15px_5px_rgba(20,184,166,0.3)]">
           <Image src={logos[0].src} alt={logos[0].alt} width={32} height={32} sizes="32px" className="filter invert brightness-0" />
           <motion.div
-            className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-30"
+            className="absolute top-0 left-0 w-full h-full bg-linear-to-r from-transparent via-white to-transparent opacity-30"
             initial={{ x: '-100%' }}
             animate={{ x: '100%' }}
             transition={{
@@ -152,7 +152,7 @@ const AWSIcon = () => {
         <div className="relative bg-(--surface) border border-white/40 rounded-2xl flex items-center justify-center w-16 h-16 p-4 overflow-hidden shadow-[0_0_15px_5px_rgba(20,184,166,0.3)]">
           <Image src={logos[1].src} alt={logos[1].alt} width={32} height={32} sizes="32px" className="filter invert brightness-0" />
           <motion.div
-            className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-30"
+            className="absolute top-0 left-0 w-full h-full bg-linear-to-r from-transparent via-white to-transparent opacity-30"
             initial={{ x: '-100%' }}
             animate={{ x: '100%' }}
             transition={{
@@ -167,7 +167,7 @@ const AWSIcon = () => {
         <div className="relative bg-(--surface) border border-white/40 rounded-2xl flex items-center justify-center w-16 h-16 p-4 overflow-hidden shadow-[0_0_15px_5px_rgba(20,184,166,0.3)]">
           <Image src={logos[2].src} alt={logos[2].alt} width={32} height={32} sizes="32px" className="filter invert brightness-0" />
           <motion.div
-            className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-30"
+            className="absolute top-0 left-0 w-full h-full bg-linear-to-r from-transparent via-white to-transparent opacity-30"
             initial={{ x: '-100%' }}
             animate={{ x: '100%' }}
             transition={{
@@ -223,8 +223,8 @@ const BentoBox1 = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center min-h-[720px] p-5 rounded-lg sm:py-24 bg-(--ink)">
-      <div className="flex flex-col md:flex-row gap-4 w-full max-w-7xl min-h-[800px] md:min-h-[800px] md:h-[800px]">
+    <div className="flex justify-center items-center min-h-180 p-5 rounded-lg sm:py-24 bg-(--ink)">
+      <div className="flex flex-col md:flex-row gap-4 w-full max-w-7xl min-h-200 md:min-h-200 md:h-200">
         <CardWithEffect>
           <div className="flex flex-col justify-between h-full">
             <div className="mb-4 px-6 mt-6">
@@ -290,7 +290,7 @@ const BentoBox1 = () => {
             </div>
           </div>
         </CardWithEffect>
-        <div className="flex flex-col w-full md:w-1/2 gap-5 h-full md:h-[800px]">
+        <div className="flex flex-col w-full md:w-1/2 gap-5 h-full md:h-200">
           <CardWithEffect>
             <div className="flex flex-col justify-center h-full">
               <LogoBeam />

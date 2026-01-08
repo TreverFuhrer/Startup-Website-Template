@@ -16,16 +16,26 @@ export const CallToAction = () => {
   const translateY = useTransform(scrollYProgress, [0, 1], [50, -50]);
   
   return (
-    <section id="cta" className="section-block bg-(--ink) text-white py-[72px] sm:py-24" ref={containerRef}>
+    <section id="cta" className="section-block bg-(--ink) text-white py-18 sm:py-24" ref={containerRef}>
       
-      <div className="container max-w-xl relative">
+      <div className="container max-w-xl relative text-center">
       <motion.div style={{translateY}}>
       {/* Decorative images - swap or remove if you want a cleaner CTA. */}
-      <Image src={HelixImage} alt="" className="absolute top-6 left-[calc(100%+36px)]" aria-hidden="true" />
+      <Image
+        src={HelixImage}
+        alt=""
+        className="pointer-events-none absolute top-6 right-0 hidden md:block w-28 md:w-32 lg:w-40"
+        aria-hidden="true"
+      />
       </motion.div>
       <motion.div style={{translateY}}>
        
-      <Image src={EmojiImage} alt="" className="absolute -top-[120px] right-[calc(100%+30px)]" aria-hidden="true" />
+      <Image
+        src={EmojiImage}
+        alt=""
+        className="pointer-events-none absolute -top-16 left-0 hidden md:block w-24 md:w-28 lg:w-36"
+        aria-hidden="true"
+      />
       </motion.div>
        
 
