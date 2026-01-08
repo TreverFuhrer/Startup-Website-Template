@@ -7,7 +7,7 @@ import { AnimatedGradientTextDemo } from './animatedtext';
 import { Container } from "./layout/Container";
 import { MotionItem } from "./motion/MotionItem";
 import { MotionSection } from "./motion/MotionSection";
-import { companyConfig } from "@/content";
+import { companyConfig, products } from "@/content";
 
 type HeroProps = {
   id?: string;
@@ -15,6 +15,8 @@ type HeroProps = {
 
 export const Hero = ({ id = "top" }: HeroProps) => {
   const { hero } = companyConfig.homepage;
+  const primaryProduct = products[0];
+  const primaryCtaHref = primaryProduct ? `/product/${primaryProduct.slug}` : hero.primaryCta.href;
 
   return (
     <MotionSection
@@ -44,7 +46,7 @@ export const Hero = ({ id = "top" }: HeroProps) => {
         <p className='text-lg sm:text-xl text-center mt-8 max-w-xl text-white/80'>{hero.description}</p>
       </MotionItem>
       <MotionItem className="flex justify-center mt-8">
-        <a href={hero.primaryCta.href} className='bg-white text-black py-3 px-5 rounded-lg font-medium'>{hero.primaryCta.label}</a>
+        <a href={primaryCtaHref} className='bg-white text-black py-3 px-5 rounded-lg font-medium'>{hero.primaryCta.label}</a>
       </MotionItem>
 
 

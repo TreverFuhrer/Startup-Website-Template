@@ -16,6 +16,17 @@ export const products: Product[] = [
         alt: "App screen",
       },
     ],
+    sections: [
+      {
+        title: "Section Title",
+        description: "Product section copy goes here to highlight a key capability.",
+        bullets: ["Benefit one", "Benefit two", "Benefit three"],
+      },
+      {
+        title: "Section Title",
+        description: "Use this block to call out another outcome or workflow.",
+      },
+    ],
   },
 ];
 

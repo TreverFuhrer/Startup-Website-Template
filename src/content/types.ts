@@ -83,6 +83,17 @@ export type Product = {
     src: StaticImageData;
     alt: string;
   }>;
+  sections: ProductSection[];
+};
+
+export type ProductSection = {
+  title: string;
+  description: string;
+  bullets?: string[];
+  image?: {
+    src: StaticImageData;
+    alt: string;
+  };
 };
 
 export type PricingPlan = {
