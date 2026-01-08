@@ -1,37 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import type { StaticImageData } from "next/image";
-
-import acmeLogo from "../../assets/images/acme.png";
-import quantumLogo from "../../assets/images/quantum.png";
-import echoLogo from "../../assets/images/echo.png";
-import celestialLogo from "../../assets/images/celestial.png";
-import pulseLogo from "../../assets/images/pulse.png";
-import apexLogo from "../../assets/images/apex.png";
+import type { Logo } from "@/content";
 import { cn } from "../lib/utils";
 import { useReducedMotionPref } from "../../motion/useReducedMotionPref";
 
-type LogoItem = {
-  src: StaticImageData;
-  alt: string;
-};
-
 type LogosMarqueeProps = {
-  logos?: LogoItem[];
+  logos: Logo[];
   className?: string;
 };
 
-const defaultLogos: LogoItem[] = [
-  { src: acmeLogo, alt: "Acme Logo" },
-  { src: quantumLogo, alt: "Quantum Logo" },
-  { src: echoLogo, alt: "Echo Logo" },
-  { src: celestialLogo, alt: "Celestial Logo" },
-  { src: pulseLogo, alt: "Pulse Logo" },
-  { src: apexLogo, alt: "Apex Logo" },
-];
-
-export const LogosMarquee = ({ logos = defaultLogos, className }: LogosMarqueeProps) => {
+export const LogosMarquee = ({ logos, className }: LogosMarqueeProps) => {
   const reducedMotion = useReducedMotionPref();
 
   if (reducedMotion) {

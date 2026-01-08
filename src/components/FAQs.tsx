@@ -5,29 +5,7 @@ import {motion , AnimatePresence} from 'framer-motion';
 import { Container } from "./layout/Container";
 import { MotionItem } from "./motion/MotionItem";
 import { MotionSection } from "./motion/MotionSection";
-// Drop in your most common questions here.
-const items = [
-  {
-    question: "Question 1",
-    answer:
-      "Answer 1. Keep it short and helpful.",
-  },
-  {
-    question: "Question 2",
-    answer:
-      "Answer 2. Add a few details to build trust.",
-  },
-  {
-    question: "Question 3",
-    answer:
-      "Answer 3. Mention anything people always ask you.",
-  },
-  {
-    question: "Question 4",
-    answer:
-      "Answer 4. Keep this clear and reassuring.",
-  },
-];
+import { faqSection } from "@/content";
 
 const AccordionItem = ({question, answer}:{question:string, answer: string}) => {
   const[isOpen, setIsOpen] = useState(false);
@@ -77,11 +55,11 @@ export const FAQs = () => {
         {/* FAQ headline goes here. */}
         <MotionItem>
           <h2 className="text-5xl sm:text-6xl sm:w-162 mx-auto text-center text-white tracking-tighter">
-            FAQ
+            {faqSection.title}
           </h2>
         </MotionItem>
         <MotionItem className="mt-12 max-w-162 mx-auto">
-          {items.map(({question, answer}) => (
+          {faqSection.items.map(({question, answer}) => (
               <AccordionItem question={question} answer={answer} key={question}/>
           ))}
         </MotionItem>

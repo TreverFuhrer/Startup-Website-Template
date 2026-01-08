@@ -8,23 +8,36 @@ import { FAQs } from "@/components/FAQs";
 import { CallToAction } from "@/components/CallToAction";
 import { Footer } from "@/components/Footer";
 import { Pricing } from "@/components/Pricingdemo";
+import { companyConfig, type HomeSectionKey } from "@/content";
 
+const sectionComponents: Record<HomeSectionKey, () => JSX.Element> = {
+  hero: Hero,
+  logos: LogoTicker,
+  features: Features,
+  product: ProductShowcase,
+  faqs: FAQs,
+  pricing: Pricing,
+  cta: CallToAction,
+};
 
 export default function Home() {
+  const { order, sections } = companyConfig.homepage;
+
   return (
     <>
       <div className="overflow-x-hidden">
         <Banner />
         <Navbar />
         <main>
-          {/* Reorder sections here to reshape the page flow. */}
-          <Hero />
-          <LogoTicker />
-          <Features />
-          <ProductShowcase />
-          <FAQs />
-          <Pricing/>
-          <CallToAction />
+          {/* Reorder sections in content/company.ts to reshape the page flow. */}
+          {order.map((sectionKey) => {
+            if (!sections[sectionKey].enabled) {
+              return null;
+            }
+
+            const SectionComponent = sectionComponents[sectionKey];
+            return <SectionComponent key={sectionKey} />;
+          })}
         </main>
         <Footer />
       </div>

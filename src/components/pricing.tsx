@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react";
+import { pricingSection } from "@/content";
 
 interface PricingTabProps {
   yearly: boolean
@@ -12,6 +13,10 @@ interface PricingTabProps {
   }
   planDescription: string
   features: string[]
+  ctaLabel: string
+  priceSuffix: string
+  includesLabel: string
+  popularBadge: string
 }
 
 export function PricingTab({
@@ -21,13 +26,17 @@ export function PricingTab({
   price,
   planDescription,
   features,
+  ctaLabel,
+  priceSuffix,
+  includesLabel,
+  popularBadge,
 }: PricingTabProps) {
   return (
     <div className="h-full">
       <div className="relative flex flex-col h-full p-6 rounded-2xl bg-(--surface) border border-white/20 shadow shadow-black/80">
         {popular && (
           <div className="absolute top-0 right-0 mr-6 -mt-4">
-            <div className="inline-flex items-center text-xs font-semibold py-1.5 px-3 bg-(--brand-2) text-black rounded-full shadow-sm shadow-slate-950/5">Top Pick</div>
+            <div className="inline-flex items-center text-xs font-semibold py-1.5 px-3 bg-(--brand-2) text-black rounded-full shadow-sm shadow-slate-950/5">{popularBadge}</div>
           </div>
         )}
         <div className="mb-5">
@@ -35,17 +44,17 @@ export function PricingTab({
           <div className="inline-flex items-baseline mb-2">
             <span className="text-white/70 font-bold text-3xl">$</span>
             <span className="text-white/50 font-bold text-4xl">{yearly ? price.yearly : price.monthly}</span>
-            <span className="text-white/70 font-medium">/mo</span>
+            <span className="text-white/70 font-medium">{priceSuffix}</span>
           </div>
           <div className="text-sm text-white/70 mb-5">{planDescription}</div>
           <button
             type="button"
             className="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-(--brand-1) px-3.5 py-2.5 text-sm font-medium text-black shadow-sm shadow-black/20 hover:bg-(--brand-3) focus-visible:outline-none focus-visible:ring focus-visible:ring-slate-600 transition-colors duration-150"
           >
-            Primary CTA
+            {ctaLabel}
           </button>
         </div>
-        <div className="text-slate-200 font-medium mb-3">Includes:</div>
+        <div className="text-slate-200 font-medium mb-3">{includesLabel}</div>
         <ul className="text-slate-400 text-sm space-y-3 grow">
           {features.map((feature) => {
             return (
@@ -65,6 +74,7 @@ export function PricingTab({
 
 export default function PricingTable() {
   const [isAnnual, setIsAnnual] = useState<boolean>(true)
+  const { billing, includesLabel, plans, popularBadge } = pricingSection
 
   return (
     <div>
@@ -81,7 +91,7 @@ export default function PricingTable() {
             aria-pressed={isAnnual}
             type="button"
           >
-            Yearly <span className={`${isAnnual ? 'text-white/80' : 'text-slate-400 dark:text-slate-500'}`}>-20%</span>
+            {billing.yearlyLabel} <span className={`${isAnnual ? 'text-white/80' : 'text-slate-400 dark:text-slate-500'}`}>{billing.yearlyDiscount}</span>
           </button>
           <button
             className={`relative flex-1 text-sm font-medium h-8 rounded-full focus-visible:outline-none focus-visible:ring focus-visible:ring-slate-600 transition-colors duration-150 ease-in-out ${isAnnual ? 'text-white/70' : ' text-white'}`}
@@ -89,7 +99,7 @@ export default function PricingTable() {
             aria-pressed={!isAnnual}
             type="button"
           >
-            Monthly
+            {billing.monthlyLabel}
           </button>
         </div>
       </div>
@@ -97,48 +107,21 @@ export default function PricingTable() {
       {/* Edit these three cards to match your real plans. */}
       <div className="max-w-sm mx-auto grid gap-6 lg:grid-cols-3 items-start lg:max-w-none">
 
-        {/* Pricing tab 1 */}
-        <PricingTab
-          yearly={isAnnual}
-          planName="Plan Name"
-          price={{ yearly: 29, monthly: 35 }}
-          planDescription="Plan description goes here."
-          features={[
-            'Feature one',
-            'Feature two',
-            'Feature three',
-            'Feature four',
-          ]} />
-
-        {/* Pricing tab 2 */}
-        <PricingTab
-          yearly={isAnnual}
-          popular={true}
-          planName="Plan Name"
-          price={{ yearly: 49, monthly: 55 }}
-          planDescription="Plan description goes here."
-          features={[
-            'Feature one',
-            'Feature two',
-            'Feature three',
-            'Feature four',
-            'Feature five',
-          ]} />
-
-        {/* Pricing tab 3 */}
-        <PricingTab
-          yearly={isAnnual}
-          planName="Plan Name"
-          price={{ yearly: 79, monthly: 85 }}
-          planDescription="Plan description goes here."
-          features={[
-            'Feature one',
-            'Feature two',
-            'Feature three',
-            'Feature four',
-            'Feature five',
-            'Feature six',
-          ]} />
+        {plans.map((plan) => (
+          <PricingTab
+            key={plan.id}
+            yearly={isAnnual}
+            popular={plan.popular}
+            planName={plan.name}
+            price={plan.price}
+            planDescription={plan.description}
+            features={plan.features}
+            ctaLabel={plan.ctaLabel}
+            priceSuffix={billing.priceSuffix}
+            includesLabel={includesLabel}
+            popularBadge={popularBadge}
+          />
+        ))}
 
       </div>
 

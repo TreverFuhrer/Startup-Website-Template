@@ -2,6 +2,7 @@ import { Container } from "./layout/Container";
 import { MotionItem } from "./motion/MotionItem";
 import { MotionSection } from "./motion/MotionSection";
 import { LogosMarquee } from "./socialproof/LogosMarquee";
+import { logosSection } from "@/content";
 
 export const LogoTicker = () => {
   return(
@@ -9,10 +10,10 @@ export const LogoTicker = () => {
       <Container>
         {/* Replace this with your social proof headline. */}
         <MotionItem>
-          <h2 className="mb-16 text-center text-lg text-white/70">Title</h2>
+          <h2 className="mb-16 text-center text-lg text-white/70">{logosSection.heading}</h2>
         </MotionItem>
         <MotionItem variant="fadeIn">
-          <LogosMarquee/>
+          <LogosMarquee logos={logosSection.logos} />
         </MotionItem>
       </Container>
     </MotionSection>

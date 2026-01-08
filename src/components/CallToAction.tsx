@@ -8,8 +8,10 @@ import { Container } from "./layout/Container";
 import { MotionItem } from "./motion/MotionItem";
 import { MotionSection } from "./motion/MotionSection";
 import { useReducedMotionPref } from "../motion/useReducedMotionPref";
+import { companyConfig } from "@/content";
 
 export const CallToAction = () => {
+  const { cta } = companyConfig.homepage.sections;
   const reducedMotion = useReducedMotionPref();
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -46,10 +48,10 @@ export const CallToAction = () => {
 
         {/* CTA headline + supporting copy. */}
         <MotionItem>
-          <h2 className="font-bold text-5xl sm:text-6xl tracking-tighter">Subscription</h2>
+          <h2 className="font-bold text-5xl sm:text-6xl tracking-tighter">{cta.headline}</h2>
         </MotionItem>
         <MotionItem>
-          <p className="mt-5 text-xl text-white/70">Body copy goes here.</p>
+          <p className="mt-5 text-xl text-white/70">{cta.description}</p>
         </MotionItem>
         <MotionItem>
           <form className="mt-10 flex flex-col gap-2.5 max-w-sm mx-auto sm:flex-row">
@@ -59,10 +61,10 @@ export const CallToAction = () => {
               autoComplete="email"
               required
               aria-label="Email address"
-              placeholder="email@company.com"
+              placeholder={cta.inputPlaceholder}
               className="h-12 bg-white/20 rounded-lg px-5 font-medium placeholder:text-[#9CA3AF] sm:flex-1"
             />
-            <button type="submit" className="bg-white text-black h-12 rounded-lg px-5">Primary CTA</button>
+            <button type="submit" className="bg-white text-black h-12 rounded-lg px-5">{cta.primaryCta.label}</button>
           </form>
         </MotionItem>
       </Container>
