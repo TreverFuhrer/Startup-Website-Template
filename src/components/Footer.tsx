@@ -12,22 +12,46 @@ export const Footer = () => {
         {/* Replace these with your real social URLs. */}
         <ul className='flex justify-center gap-2.5' aria-label="Social links">
           <li>
-            <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="X">
+            <a
+              href="https://x.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="X"
+              className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
+            >
               <XIcon />
             </a>
           </li>
           <li>
-            <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
+            >
               <LinkedInIcon />
             </a>
           </li>
           <li>
-            <a href="https://www.instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+              className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
+            >
               <InstaIcon />
             </a>
           </li>
           <li>
-            <a href="https://www.youtube.com" target="_blank" rel="noreferrer" aria-label="YouTube">
+            <a
+              href="https://www.youtube.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="YouTube"
+              className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
+            >
               <YoutubeIcon />
             </a>
           </li>

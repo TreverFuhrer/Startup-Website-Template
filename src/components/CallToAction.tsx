@@ -66,9 +66,14 @@ export const CallToAction = ({ id = "cta" }: CallToActionProps) => {
               required
               aria-label="Email address"
               placeholder={cta.inputPlaceholder}
-              className="h-12 bg-white/20 rounded-lg px-5 font-medium placeholder:text-[#9CA3AF] sm:flex-1"
+              className="h-12 bg-white/20 rounded-lg px-5 font-medium placeholder:text-[#9CA3AF] sm:flex-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
             />
-            <button type="submit" className="bg-white text-black h-12 rounded-lg px-5">{cta.primaryCta.label}</button>
+            <button
+              type="submit"
+              className="bg-white text-black h-12 rounded-lg px-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
+            >
+              {cta.primaryCta.label}
+            </button>
           </form>
         </MotionItem>
       </Container>

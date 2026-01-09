@@ -8,7 +8,7 @@ export function Banner() {
         {/* Update this line to whatever quick announcement you want. */}
         <a
           href="#top"
-          className="group inline-flex items-center justify-center text-center text-sm leading-loose"
+          className="group inline-flex items-center justify-center rounded-full text-center text-sm leading-loose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
         >
           ✦
           <span className="font-bold">Announcement</span>

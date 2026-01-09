@@ -19,6 +19,7 @@ export const Navbar = () => {
   const highlightEnabled = isHome && navbarConfig.activeSectionHighlight;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const firstMobileLinkRef = useRef<HTMLAnchorElement | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const sectionIds = useMemo(
     () =>
       navItems
@@ -60,6 +61,31 @@ export const Navbar = () => {
     [isHome, isMenuOpen],
   );
 
+  const handleMobileKeyDown = useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== "Tab") {
+      return;
+    }
+
+    const focusable = mobileMenuRef.current?.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex="0"]',
+    );
+    if (!focusable || focusable.length === 0) {
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const activeElement = document.activeElement;
+
+    if (event.shiftKey && activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }, []);
+
   useEffect(() => {
     if (!isMenuOpen) {
       return;
@@ -92,13 +118,17 @@ export const Navbar = () => {
       <Container>
         <div className="flex items-center justify-between py-4">
           {/* Swap this logo and label with your brand. */}
-          <a href="/#top" className="relative" aria-label="Brand">
+          <a
+            href="/#top"
+            className="relative rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
+            aria-label="Brand"
+          >
             <div className="absolute bottom-0 top-2 w-full bg-[linear-gradient(to_right,var(--brand-2),var(--brand-1),var(--brand-3))] blur-md" />
             <LogoIcon className="relative mt-1 h-12 w-12" />
           </a>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/30 sm:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/30 sm:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
             aria-label="Open menu"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
@@ -121,7 +151,7 @@ export const Navbar = () => {
                     key={`${item.label}-${item.href}`}
                     href={href}
                     className={cn(
-                      "relative inline-flex items-center rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
+                      "relative inline-flex items-center rounded-full px-3 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)",
                       isActive ? "text-white" : "text-white/60 hover:text-white",
                     )}
                     target={target}
@@ -153,7 +183,7 @@ export const Navbar = () => {
               })}
               <a
                 href={navbarConfig.primaryCta.href}
-                className="ml-3 inline-flex items-center rounded-lg bg-white px-4 py-2 text-sm font-semibold text-black"
+                className="ml-3 inline-flex items-center rounded-lg bg-white px-4 py-2 text-sm font-semibold text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
                 onClick={
                   primaryCtaSectionId
                     ? (event) => handleAnchorClick(event, navbarConfig.primaryCta.href, primaryCtaSectionId)
@@ -172,6 +202,8 @@ export const Navbar = () => {
           className="sm:hidden border-t border-white/10 bg-(--ink) backdrop-blur"
           role="dialog"
           aria-label="Mobile navigation"
+          ref={mobileMenuRef}
+          onKeyDown={handleMobileKeyDown}
         >
           <Container className="flex flex-col gap-2 py-4">
             {navItems.map((item, index) => {
@@ -186,7 +218,7 @@ export const Navbar = () => {
                   key={`${item.label}-${item.href}-mobile`}
                   href={href}
                   className={cn(
-                    "flex items-center rounded-lg px-4 py-3 text-base font-medium transition-colors",
+                    "flex items-center rounded-lg px-4 py-3 text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)",
                     isActive ? "bg-white/10 text-white" : "text-white/70 hover:text-white",
                   )}
                   target={target}
@@ -203,7 +235,7 @@ export const Navbar = () => {
             })}
             <a
               href={navbarConfig.primaryCta.href}
-              className="mt-2 inline-flex items-center justify-center rounded-lg bg-white px-4 py-3 text-base font-semibold text-black"
+              className="mt-2 inline-flex items-center justify-center rounded-lg bg-white px-4 py-3 text-base font-semibold text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
               onClick={
                 primaryCtaSectionId
                   ? (event) => handleAnchorClick(event, navbarConfig.primaryCta.href, primaryCtaSectionId)

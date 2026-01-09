@@ -46,7 +46,12 @@ export const Hero = ({ id = "top" }: HeroProps) => {
         <p className='text-lg sm:text-xl text-center mt-8 max-w-xl text-white/80'>{hero.description}</p>
       </MotionItem>
       <MotionItem className="flex justify-center mt-8">
-        <a href={primaryCtaHref} className='bg-white text-black py-3 px-5 rounded-lg font-medium'>{hero.primaryCta.label}</a>
+        <a
+          href={primaryCtaHref}
+          className='bg-white text-black py-3 px-5 rounded-lg font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)'
+        >
+          {hero.primaryCta.label}
+        </a>
       </MotionItem>
 
 

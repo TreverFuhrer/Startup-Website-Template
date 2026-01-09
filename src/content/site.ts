@@ -7,9 +7,9 @@ export const siteConfig: SiteConfig = {
   },
   siteUrl: "https://example.com",
   nav: [
+    { type: "anchor", label: "Logos", href: "/#customers", sectionId: "customers" },
     { type: "anchor", label: "About", href: "/#about", sectionId: "about" },
     { type: "anchor", label: "App", href: "/#app", sectionId: "app" },
-    { type: "anchor", label: "Logos", href: "/#customers", sectionId: "customers" },
     { type: "anchor", label: "FAQs", href: "/#faqs", sectionId: "faqs" },
     { type: "anchor", label: "Pricing", href: "/#pricing", sectionId: "pricing" },
     { type: "page", label: "Product", href: "/product/app" },

@@ -15,12 +15,15 @@ export const FinalCTA = ({ block }: FinalCTAProps) => {
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a
             href={block.primaryCta.href}
-            className="inline-flex items-center justify-center rounded-lg bg-white px-5 py-3 font-medium text-black"
+            className="inline-flex items-center justify-center rounded-lg bg-white px-5 py-3 font-medium text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
           >
             {block.primaryCta.label}
           </a>
           {block.secondaryCta ? (
-            <a href={block.secondaryCta.href} className="inline-flex items-center justify-center text-white/70 transition hover:text-white">
+            <a
+              href={block.secondaryCta.href}
+              className="inline-flex items-center justify-center text-white/70 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
+            >
               {block.secondaryCta.label}
             </a>
           ) : null}
