@@ -8,6 +8,7 @@ export const products: Product[] = [
     slug: "app",
     name: "Title",
     tagline: "App section body copy goes here.",
+    ogImage: "/og/default.png",
     primaryCta: {
       label: "Primary CTA",
       href: "/product/app",

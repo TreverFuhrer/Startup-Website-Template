@@ -187,6 +187,7 @@ export type Product = {
   slug: string;
   name: string;
   tagline: string;
+  ogImage: string;
   primaryCta: {
     label: string;
     href: string;

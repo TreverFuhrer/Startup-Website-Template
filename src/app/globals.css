@@ -15,7 +15,7 @@ html {
 
 body {
   /* Swap the first font name if you want a different feel. */
-  font-family: "Space Grotesk", "Satoshi", "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-family: var(--font-sans), "Space Grotesk", "Satoshi", "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   background: var(--ink);
   color: #e2e8f0;
 }

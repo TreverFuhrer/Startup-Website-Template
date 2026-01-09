@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Banner } from "@/components/Banner";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
@@ -11,6 +12,21 @@ import { Pricing } from "@/components/Pricingdemo";
 import { companyConfig, type HomeSectionKey } from "@/content";
 import { cloneElement } from "react";
 import type { ReactElement } from "react";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Short description of your startup",
+  openGraph: {
+    title: "Home",
+    description: "Short description of your startup",
+    images: [{ url: "/og/default.png" }],
+  },
+  twitter: {
+    title: "Home",
+    description: "Short description of your startup",
+    images: ["/og/default.png"],
+  },
+};
 
 const SECTION_COMPONENTS: Record<HomeSectionKey, ReactElement<{ id?: string }>> = {
   hero: <Hero />,
