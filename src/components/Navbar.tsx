@@ -12,7 +12,14 @@ import { companyConfig, siteConfig } from "@/content";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useScrolled } from "@/hooks/useScrolled";
 
-export const Navbar = () => {
+type NavbarProps = {
+  secondaryNav?: Array<{
+    id: string;
+    label: string;
+  }>;
+};
+
+export const Navbar = ({ secondaryNav }: NavbarProps) => {
   const navItems = siteConfig.nav;
   const navbarConfig = siteConfig.navbar;
   const enabledSectionIds = useMemo(
@@ -254,6 +261,23 @@ export const Navbar = () => {
             >
               {navbarConfig.primaryCta.label}
             </a>
+            {secondaryNav && secondaryNav.length > 0 ? (
+              <div className="mt-3 border-t border-white/10 pt-3">
+                <div className="px-4 text-xs uppercase tracking-[0.2em] text-white/40">On this page</div>
+                <div className="mt-2 flex flex-wrap gap-2 px-4">
+                  {secondaryNav.map((item) => (
+                    <a
+                      key={`${item.id}-${item.label}`}
+                      href={`#${item.id}`}
+                      className="rounded-full px-3 py-1.5 text-sm text-white/70 transition-colors hover:text-white hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
+                      onClick={(event) => handleAnchorClick(event, `#${item.id}`, item.id)}
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </Container>
         </div>
       ) : null}

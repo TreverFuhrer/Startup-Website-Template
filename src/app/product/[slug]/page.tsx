@@ -77,8 +77,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <div>
       <Banner />
-      <Navbar />
-      <ProductSubnav product={product} />
+      <Navbar secondaryNav={product.page.nav} />
+      <ProductSubnav product={product} className="hidden sm:block" />
       <div className="overflow-x-hidden">
         <main>
           <ProductSections product={product} />
