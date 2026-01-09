@@ -19,6 +19,7 @@ const blockKeys: ProductPageBlockKey[] = [
   "howItWorks",
   "featureGrid",
   "useCases",
+  "pricing",
   "faq",
   "finalCta",
 ];
@@ -244,6 +245,8 @@ export const validateContent = () => {
         `products[${index}].page.useCases.items[${itemIndex}].description`,
       );
     });
+
+    assertString(issues, product.page.pricing.id, `products[${index}].page.pricing.id`);
 
     assertString(issues, product.page.faq.id, `products[${index}].page.faq.id`);
     assertString(issues, product.page.faq.title, `products[${index}].page.faq.title`);

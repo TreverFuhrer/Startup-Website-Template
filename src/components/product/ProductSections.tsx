@@ -6,6 +6,7 @@ import { ProductFAQ } from "./ProductFAQ";
 import { ProductHero } from "./ProductHero";
 import { ScreenshotGrid } from "./ScreenshotGrid";
 import { UseCases } from "./UseCases";
+import { Pricing } from "../Pricingdemo";
 
 type ProductSectionsProps = {
   product: Product;
@@ -28,6 +29,8 @@ export const ProductSections = ({ product }: ProductSectionsProps) => {
             return <FeatureGrid key={blockKey} block={page.featureGrid} />;
           case "useCases":
             return <UseCases key={blockKey} block={page.useCases} />;
+          case "pricing":
+            return <Pricing key={blockKey} id={page.pricing.id} />;
           case "faq":
             return <ProductFAQ key={blockKey} block={page.faq} />;
           case "finalCta":

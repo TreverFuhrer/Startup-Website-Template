@@ -14,7 +14,7 @@ export const products: Product[] = [
       href: "/product/app",
     },
     page: {
-      order: ["hero", "screenshots", "howItWorks", "featureGrid", "useCases", "faq", "finalCta"],
+      order: ["hero", "screenshots", "howItWorks", "featureGrid", "useCases", "pricing", "faq", "finalCta"],
       hero: {
         id: "overview",
         eyebrow: "Product",
@@ -124,9 +124,12 @@ export const products: Product[] = [
           },
         ],
       },
+      pricing: {
+        id: "pricing",
+      },
       faq: {
         id: "faq",
-        title: "FAQ",
+        title: "Product FAQ",
         items: [
           {
             question: "How long does setup take?",

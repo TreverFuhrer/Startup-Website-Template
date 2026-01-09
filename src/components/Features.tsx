@@ -15,12 +15,12 @@ export const Features = ({ id = "about" }: FeaturesProps) => {
       <Container>
         {/* About section headline. */}
         <MotionItem>
-          <h2 className="text-center font-bold text-5xl sm:text-6xl tracking-tighter">Title</h2>
+          <h2 className="text-center font-bold text-5xl sm:text-6xl tracking-tighter">About the company</h2>
         </MotionItem>
         <MotionItem className='max-w-xl mx-auto'>
           {/* About section body copy. */}
           <p className="text-center mt-5 text-xl text-white/70">
-            About body copy goes here. Keep it short and punchy.
+            A short company overview that builds trust and sets the vision.
           </p>
         </MotionItem>
         <MotionItem variant="fadeIn" className="flex flex-col items-center justify-center sm:flex-row gap-4 mt-32">

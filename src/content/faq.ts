@@ -6,7 +6,7 @@ type FaqSection = {
 };
 
 export const faqSection: FaqSection = {
-  title: "FAQ",
+  title: "Company FAQ",
   items: [
     {
       question: "Question 1",

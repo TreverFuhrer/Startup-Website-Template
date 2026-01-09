@@ -8,7 +8,7 @@ export const companyConfig: CompanyConfig = {
       { key: "features", enabled: true, navId: "about" },
       { key: "product", enabled: true, navId: "app" },
       { key: "faqs", enabled: true, navId: "faqs" },
-      { key: "pricing", enabled: true, navId: "pricing" },
+      { key: "pricing", enabled: false, navId: "pricing" },
       { key: "cta", enabled: true, navId: "cta" },
     ],
     hero: {

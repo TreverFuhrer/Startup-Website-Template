@@ -8,27 +8,29 @@ import { LayoutGroup, motion } from "framer-motion";
 import { LogoIcon, MenuIcon } from "./icons";
 import { Container } from "./layout/Container";
 import { cn } from "./lib/utils";
-import { siteConfig } from "@/content";
+import { companyConfig, siteConfig } from "@/content";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useScrolled } from "@/hooks/useScrolled";
 
 export const Navbar = () => {
   const navItems = siteConfig.nav;
   const navbarConfig = siteConfig.navbar;
+  const enabledSectionIds = companyConfig.homepage.sections
+    .filter((section) => section.enabled)
+    .map((section) => section.navId);
+  const visibleNavItems = navItems.filter(
+    (item) => item.type !== "anchor" || enabledSectionIds.includes(item.sectionId),
+  );
   const pathname = usePathname();
   const isHome = pathname === "/";
   const highlightEnabled = isHome && navbarConfig.activeSectionHighlight;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const firstMobileLinkRef = useRef<HTMLAnchorElement | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
-  const sectionIds = useMemo(
-    () =>
-      navItems
-        .filter((item) => item.type === "anchor")
-        .map((item) => item.sectionId)
-        .filter((id): id is string => Boolean(id)),
-    [navItems],
-  );
+  const sectionIds = visibleNavItems
+    .filter((item) => item.type === "anchor")
+    .map((item) => item.sectionId)
+    .filter((id): id is string => Boolean(id));
   const activeId = useActiveSection(sectionIds, {
     enabled: highlightEnabled,
     offset: navbarConfig.sticky ? 96 : 0,
@@ -141,7 +143,7 @@ export const Navbar = () => {
           {/* Keep these links aligned with the section ids below. */}
           <LayoutGroup>
             <nav className="hidden items-center gap-2 text-white sm:flex" aria-label="Primary">
-              {navItems.map((item) => {
+              {visibleNavItems.map((item) => {
                 const anchorId = item.type === "anchor" ? item.sectionId : undefined;
                 const isActive = Boolean(highlightEnabled && anchorId && activeId === anchorId);
                 const href = item.href;
@@ -208,7 +210,7 @@ export const Navbar = () => {
           onKeyDown={handleMobileKeyDown}
         >
           <Container className="flex flex-col gap-2 py-4">
-            {navItems.map((item, index) => {
+            {visibleNavItems.map((item, index) => {
               const anchorId = item.type === "anchor" ? item.sectionId : undefined;
               const isActive = Boolean(highlightEnabled && anchorId && activeId === anchorId);
               const href = item.href;

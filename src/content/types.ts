@@ -89,6 +89,7 @@ export type ProductPageBlockKey =
   | "howItWorks"
   | "featureGrid"
   | "useCases"
+  | "pricing"
   | "faq"
   | "finalCta";
 
@@ -158,6 +159,10 @@ export type ProductPageFaq = {
   items: FaqItem[];
 };
 
+export type ProductPagePricing = {
+  id: string;
+};
+
 export type ProductPageFinalCta = {
   id: string;
   title: string;
@@ -179,6 +184,7 @@ export type ProductPageConfig = {
   howItWorks: ProductPageHowItWorks;
   featureGrid: ProductPageFeatureGrid;
   useCases: ProductPageUseCases;
+  pricing: ProductPagePricing;
   faq: ProductPageFaq;
   finalCta: ProductPageFinalCta;
 };
