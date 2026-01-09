@@ -1,40 +1,45 @@
 import Image from "next/image";
-import type { Product } from "@/content";
+import type { ProductPageHero } from "@/content";
 import { Container } from "../layout/Container";
-import { Section } from "../layout/Section";
+import { MotionSection } from "../motion/MotionSection";
 
 type ProductHeroProps = {
-  product: Product;
+  block: ProductPageHero;
 };
 
-export const ProductHero = ({ product }: ProductHeroProps) => {
-  const primaryShot = product.screenshots[0];
-
+export const ProductHero = ({ block }: ProductHeroProps) => {
   return (
-    <Section className="section-block bg-(--ink) text-white">
+    <MotionSection id={block.id} variant="fadeUp" className="section-block bg-(--ink) text-white">
       <Container className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">Product</p>
-          <h1 className="mt-4 text-5xl font-bold tracking-tight sm:text-6xl">{product.name}</h1>
-          <p className="mt-5 text-xl text-white/70">{product.tagline}</p>
-          <a
-            href={product.primaryCta.href}
-            className="mt-8 inline-flex items-center justify-center rounded-lg bg-white px-5 py-3 font-medium text-black"
-          >
-            {product.primaryCta.label}
-          </a>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">{block.eyebrow}</p>
+          <h1 className="mt-4 text-5xl font-bold tracking-tight sm:text-6xl">{block.title}</h1>
+          <p className="mt-5 text-xl text-white/70">{block.description}</p>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a
+              href={block.primaryCta.href}
+              className="inline-flex items-center justify-center rounded-lg bg-white px-5 py-3 font-medium text-black"
+            >
+              {block.primaryCta.label}
+            </a>
+            {block.secondaryCta ? (
+              <a href={block.secondaryCta.href} className="text-white/70 transition hover:text-white">
+                {block.secondaryCta.label}
+              </a>
+            ) : null}
+          </div>
         </div>
-        {primaryShot ? (
+        {block.image ? (
           <div className="rounded-2xl border border-white/10 bg-(--surface) p-5 shadow shadow-black/40">
             <Image
-              src={primaryShot.src}
-              alt={primaryShot.alt}
+              src={block.image.src}
+              alt={block.image.alt}
               className="w-full"
               sizes="(min-width: 1024px) 520px, 92vw"
             />
           </div>
         ) : null}
       </Container>
-    </Section>
+    </MotionSection>
   );
 };

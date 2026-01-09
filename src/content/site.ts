@@ -7,13 +7,22 @@ export const siteConfig: SiteConfig = {
   },
   siteUrl: "https://example.com",
   nav: [
-    { type: "anchor", label: "About", href: "#about" },
-    { type: "anchor", label: "App", href: "#app" },
-    { type: "anchor", label: "Logos", href: "#customers" },
-    { type: "anchor", label: "FAQs", href: "#faqs" },
-    { type: "anchor", label: "Pricing", href: "#pricing" },
-    { type: "anchor", label: "Primary CTA", href: "#cta", variant: "primary" },
+    { type: "anchor", label: "About", href: "/#about", sectionId: "about" },
+    { type: "anchor", label: "App", href: "/#app", sectionId: "app" },
+    { type: "anchor", label: "Logos", href: "/#customers", sectionId: "customers" },
+    { type: "anchor", label: "FAQs", href: "/#faqs", sectionId: "faqs" },
+    { type: "anchor", label: "Pricing", href: "/#pricing", sectionId: "pricing" },
+    { type: "page", label: "Product", href: "/product/app" },
   ],
+  navbar: {
+    sticky: true,
+    activeSectionHighlight: true,
+    stickyStyle: "blur-border",
+    primaryCta: {
+      label: "Primary CTA",
+      href: "/#cta",
+    },
+  },
   socials: [
     { label: "X", href: "https://x.com", icon: "x" },
     { label: "LinkedIn", href: "https://www.linkedin.com", icon: "linkedin" },

@@ -27,21 +27,23 @@ export default function Home() {
 
   return (
     <>
-      <div className="overflow-x-hidden">
+      <div>
         <Banner />
         <Navbar />
-        <main>
-          {/* Reorder sections in content/company.ts to reshape the page flow. */}
-          {sections.map((section) => {
-            if (!section.enabled) {
-              return null;
-            }
+        <div className="overflow-x-hidden">
+          <main>
+            {/* Reorder sections in content/company.ts to reshape the page flow. */}
+            {sections.map((section) => {
+              if (!section.enabled) {
+                return null;
+              }
 
-            const sectionElement = SECTION_COMPONENTS[section.key];
-            return cloneElement(sectionElement, { id: section.navId, key: section.key });
-          })}
-        </main>
-        <Footer />
+              const sectionElement = SECTION_COMPONENTS[section.key];
+              return cloneElement(sectionElement, { id: section.navId, key: section.key });
+            })}
+          </main>
+          <Footer />
+        </div>
       </div>
     </>
   );

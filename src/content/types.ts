@@ -3,7 +3,8 @@ import type { StaticImageData } from "next/image";
 export type NavAnchorItem = {
   type: "anchor";
   label: string;
-  href: `#${string}`;
+  href: `/#${string}`;
+  sectionId: string;
   variant?: "primary";
 };
 
@@ -24,6 +25,16 @@ export type NavExternalItem = {
 
 export type NavItem = NavAnchorItem | NavPageItem | NavExternalItem;
 
+export type NavbarConfig = {
+  sticky: boolean;
+  activeSectionHighlight: boolean;
+  stickyStyle: "blur-border";
+  primaryCta: {
+    label: string;
+    href: string;
+  };
+};
+
 export type SiteConfig = {
   brand: {
     name: string;
@@ -31,6 +42,7 @@ export type SiteConfig = {
   };
   siteUrl: string;
   nav: NavItem[];
+  navbar: NavbarConfig;
   socials: Array<{
     label: string;
     href: string;
@@ -71,6 +83,106 @@ export type CompanyConfig = {
   };
 };
 
+export type ProductPageBlockKey =
+  | "hero"
+  | "screenshots"
+  | "howItWorks"
+  | "featureGrid"
+  | "useCases"
+  | "faq"
+  | "finalCta";
+
+export type ProductPageHero = {
+  id: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  primaryCta: {
+    label: string;
+    href: string;
+  };
+  secondaryCta?: {
+    label: string;
+    href: string;
+  };
+  image?: {
+    src: StaticImageData;
+    alt: string;
+  };
+};
+
+export type ProductPageScreenshots = {
+  id: string;
+  title: string;
+  description: string;
+  items: Array<{
+    src: StaticImageData;
+    alt: string;
+    caption?: string;
+  }>;
+};
+
+export type ProductPageHowItWorks = {
+  id: string;
+  title: string;
+  description?: string;
+  steps: Array<{
+    title: string;
+    description: string;
+  }>;
+};
+
+export type ProductPageFeatureGrid = {
+  id: string;
+  title: string;
+  description?: string;
+  features: Array<{
+    title: string;
+    description: string;
+  }>;
+};
+
+export type ProductPageUseCases = {
+  id: string;
+  title: string;
+  description?: string;
+  items: Array<{
+    title: string;
+    description: string;
+  }>;
+};
+
+export type ProductPageFaq = {
+  id: string;
+  title: string;
+  items: FaqItem[];
+};
+
+export type ProductPageFinalCta = {
+  id: string;
+  title: string;
+  description: string;
+  primaryCta: {
+    label: string;
+    href: string;
+  };
+  secondaryCta?: {
+    label: string;
+    href: string;
+  };
+};
+
+export type ProductPageConfig = {
+  order: ProductPageBlockKey[];
+  hero: ProductPageHero;
+  screenshots: ProductPageScreenshots;
+  howItWorks: ProductPageHowItWorks;
+  featureGrid: ProductPageFeatureGrid;
+  useCases: ProductPageUseCases;
+  faq: ProductPageFaq;
+  finalCta: ProductPageFinalCta;
+};
+
 export type Product = {
   slug: string;
   name: string;
@@ -79,21 +191,7 @@ export type Product = {
     label: string;
     href: string;
   };
-  screenshots: Array<{
-    src: StaticImageData;
-    alt: string;
-  }>;
-  sections: ProductSection[];
-};
-
-export type ProductSection = {
-  title: string;
-  description: string;
-  bullets?: string[];
-  image?: {
-    src: StaticImageData;
-    alt: string;
-  };
+  page: ProductPageConfig;
 };
 
 export type PricingPlan = {

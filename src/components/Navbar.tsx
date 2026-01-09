@@ -1,17 +1,98 @@
+"use client";
 
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { MouseEvent } from "react";
+import { usePathname } from "next/navigation";
+import { LayoutGroup, motion } from "framer-motion";
 import { LogoIcon, MenuIcon } from "./icons";
 import { Container } from "./layout/Container";
+import { cn } from "./lib/utils";
 import { siteConfig } from "@/content";
+import { useActiveSection } from "@/hooks/useActiveSection";
+import { useScrolled } from "@/hooks/useScrolled";
 
 export const Navbar = () => {
   const navItems = siteConfig.nav;
+  const navbarConfig = siteConfig.navbar;
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const highlightEnabled = isHome && navbarConfig.activeSectionHighlight;
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const firstMobileLinkRef = useRef<HTMLAnchorElement | null>(null);
+  const sectionIds = useMemo(
+    () =>
+      navItems
+        .filter((item) => item.type === "anchor")
+        .map((item) => item.sectionId)
+        .filter((id): id is string => Boolean(id)),
+    [navItems],
+  );
+  const activeId = useActiveSection(sectionIds, {
+    enabled: highlightEnabled,
+    offset: navbarConfig.sticky ? 96 : 0,
+  });
+  const scrolled = useScrolled({ enabled: navbarConfig.sticky });
+  const primaryCtaSectionId = useMemo(() => {
+    if (!navbarConfig.primaryCta.href.startsWith("/#")) {
+      return undefined;
+    }
+
+    return navbarConfig.primaryCta.href.split("#")[1];
+  }, [navbarConfig.primaryCta.href]);
+
+  const handleAnchorClick = useCallback(
+    (event: MouseEvent<HTMLAnchorElement>, href: string, sectionId?: string) => {
+      if (isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+
+      if (!isHome || !sectionId) {
+        return;
+      }
+
+      event.preventDefault();
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.history.replaceState(null, "", href);
+      }
+    },
+    [isHome, isMenuOpen],
+  );
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    firstMobileLinkRef.current?.focus();
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMenuOpen]);
 
   return (
-    <header className="bg-(--ink)">
+    <header
+      className={cn(
+        navbarConfig.sticky ? "sticky top-0 z-40 border-b border-transparent" : "bg-(--ink)",
+        navbarConfig.sticky &&
+          scrolled &&
+          navbarConfig.stickyStyle === "blur-border" &&
+          "bg-[rgba(11,15,26,0.72)] backdrop-blur border-white/10 shadow-[0_8px_24px_rgba(0,0,0,0.2)]",
+        navbarConfig.sticky && !scrolled && "bg-transparent",
+        "transition-colors duration-200",
+      )}
+    >
       <Container>
         <div className="flex items-center justify-between py-4">
           {/* Swap this logo and label with your brand. */}
-          <a href="#top" className="relative" aria-label="Brand">
+          <a href="/#top" className="relative" aria-label="Brand">
             <div className="absolute bottom-0 top-2 w-full bg-[linear-gradient(to_right,var(--brand-2),var(--brand-1),var(--brand-3))] blur-md" />
             <LogoIcon className="relative mt-1 h-12 w-12" />
           </a>
@@ -19,29 +100,121 @@ export const Navbar = () => {
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/30 sm:hidden"
             aria-label="Open menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-nav"
+            onClick={() => setIsMenuOpen((prev) => !prev)}
           >
             <MenuIcon className="text-white" />
           </button>
           {/* Keep these links aligned with the section ids below. */}
-          <nav className="hidden items-center gap-6 text-white sm:flex" aria-label="Primary">
-            {navItems.map((item) => {
-              const isPrimary = item.variant === "primary";
-              const className = isPrimary
-                ? "rounded-lg bg-white px-4 py-2 text-black"
-                : "text-white/60 transition hover:text-white";
-              const href = item.type === "anchor" ? `/${item.href}` : item.href;
+          <LayoutGroup>
+            <nav className="hidden items-center gap-2 text-white sm:flex" aria-label="Primary">
+              {navItems.map((item) => {
+                const anchorId = item.type === "anchor" ? item.sectionId : undefined;
+                const isActive = Boolean(highlightEnabled && anchorId && activeId === anchorId);
+                const href = item.href;
+                const target = item.type === "external" && item.newTab !== false ? "_blank" : undefined;
+                const rel = target ? "noreferrer" : undefined;
+
+                return (
+                  <a
+                    key={`${item.label}-${item.href}`}
+                    href={href}
+                    className={cn(
+                      "relative inline-flex items-center rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
+                      isActive ? "text-white" : "text-white/60 hover:text-white",
+                    )}
+                    target={target}
+                    rel={rel}
+                    aria-current={isActive ? "page" : undefined}
+                    onClick={(event) =>
+                      item.type === "anchor" ? handleAnchorClick(event, item.href, item.sectionId) : undefined
+                    }
+                  >
+                    {highlightEnabled && isActive ? (
+                      <>
+                        <motion.span
+                          layoutId="nav-pill"
+                          className="absolute inset-0 rounded-full bg-white/10"
+                          transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                        />
+                        <motion.span
+                          layoutId="nav-underline"
+                          className="absolute -bottom-2 left-3 right-3 h-0.5 rounded-full bg-(--brand-1)"
+                          transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                        />
+                      </>
+                    ) : null}
+                    <span className={cn("relative z-10", isActive ? "font-semibold text-white" : "font-medium")}>
+                      {item.label}
+                    </span>
+                  </a>
+                );
+              })}
+              <a
+                href={navbarConfig.primaryCta.href}
+                className="ml-3 inline-flex items-center rounded-lg bg-white px-4 py-2 text-sm font-semibold text-black"
+                onClick={
+                  primaryCtaSectionId
+                    ? (event) => handleAnchorClick(event, navbarConfig.primaryCta.href, primaryCtaSectionId)
+                    : undefined
+                }
+              >
+                {navbarConfig.primaryCta.label}
+              </a>
+            </nav>
+          </LayoutGroup>
+        </div>
+      </Container>
+      {isMenuOpen ? (
+        <div
+          id="mobile-nav"
+          className="sm:hidden border-t border-white/10 bg-(--ink) backdrop-blur"
+          role="dialog"
+          aria-label="Mobile navigation"
+        >
+          <Container className="flex flex-col gap-2 py-4">
+            {navItems.map((item, index) => {
+              const anchorId = item.type === "anchor" ? item.sectionId : undefined;
+              const isActive = Boolean(highlightEnabled && anchorId && activeId === anchorId);
+              const href = item.href;
               const target = item.type === "external" && item.newTab !== false ? "_blank" : undefined;
               const rel = target ? "noreferrer" : undefined;
 
               return (
-                <a key={`${item.label}-${item.href}`} href={href} className={className} target={target} rel={rel}>
+                <a
+                  key={`${item.label}-${item.href}-mobile`}
+                  href={href}
+                  className={cn(
+                    "flex items-center rounded-lg px-4 py-3 text-base font-medium transition-colors",
+                    isActive ? "bg-white/10 text-white" : "text-white/70 hover:text-white",
+                  )}
+                  target={target}
+                  rel={rel}
+                  aria-current={isActive ? "page" : undefined}
+                  ref={index === 0 ? firstMobileLinkRef : undefined}
+                  onClick={(event) =>
+                    item.type === "anchor" ? handleAnchorClick(event, item.href, item.sectionId) : setIsMenuOpen(false)
+                  }
+                >
                   {item.label}
                 </a>
               );
             })}
-          </nav>
+            <a
+              href={navbarConfig.primaryCta.href}
+              className="mt-2 inline-flex items-center justify-center rounded-lg bg-white px-4 py-3 text-base font-semibold text-black"
+              onClick={
+                primaryCtaSectionId
+                  ? (event) => handleAnchorClick(event, navbarConfig.primaryCta.href, primaryCtaSectionId)
+                  : () => setIsMenuOpen(false)
+              }
+            >
+              {navbarConfig.primaryCta.label}
+            </a>
+          </Container>
         </div>
-      </Container>
+      ) : null}
     </header>
   );
 };
