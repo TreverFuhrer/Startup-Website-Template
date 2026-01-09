@@ -124,6 +124,37 @@ export const validateContent = () => {
   assertString(issues, companyConfig.homepage.hero.description, "companyConfig.homepage.hero.description");
   assertString(issues, companyConfig.homepage.hero.primaryCta.label, "companyConfig.homepage.hero.primaryCta.label");
   assertString(issues, companyConfig.homepage.hero.primaryCta.href, "companyConfig.homepage.hero.primaryCta.href");
+  assertString(issues, companyConfig.homepage.hero.secondaryCta.label, "companyConfig.homepage.hero.secondaryCta.label");
+  assertString(issues, companyConfig.homepage.hero.secondaryCta.href, "companyConfig.homepage.hero.secondaryCta.href");
+
+  assertString(issues, companyConfig.homepage.mission.title, "companyConfig.homepage.mission.title");
+  assertString(issues, companyConfig.homepage.mission.description, "companyConfig.homepage.mission.description");
+  assertArray(issues, companyConfig.homepage.mission.points, "companyConfig.homepage.mission.points");
+  const missionPoints = Array.isArray(companyConfig.homepage.mission.points)
+    ? companyConfig.homepage.mission.points
+    : [];
+  missionPoints.forEach((point, index) => {
+    assertString(issues, point.title, `companyConfig.homepage.mission.points[${index}].title`);
+    assertString(issues, point.description, `companyConfig.homepage.mission.points[${index}].description`);
+  });
+
+  assertString(issues, companyConfig.homepage.pillars.title, "companyConfig.homepage.pillars.title");
+  assertString(issues, companyConfig.homepage.pillars.description, "companyConfig.homepage.pillars.description");
+
+  assertString(issues, companyConfig.homepage.featuredProduct.eyebrow, "companyConfig.homepage.featuredProduct.eyebrow");
+  assertString(issues, companyConfig.homepage.featuredProduct.ctaLabel, "companyConfig.homepage.featuredProduct.ctaLabel");
+
+  assertString(issues, companyConfig.homepage.vision.title, "companyConfig.homepage.vision.title");
+  assertString(issues, companyConfig.homepage.vision.description, "companyConfig.homepage.vision.description");
+  assertArray(issues, companyConfig.homepage.vision.initiatives, "companyConfig.homepage.vision.initiatives");
+  const visionItems = Array.isArray(companyConfig.homepage.vision.initiatives)
+    ? companyConfig.homepage.vision.initiatives
+    : [];
+  visionItems.forEach((item, index) => {
+    assertString(issues, item.title, `companyConfig.homepage.vision.initiatives[${index}].title`);
+    assertString(issues, item.description, `companyConfig.homepage.vision.initiatives[${index}].description`);
+    assertString(issues, item.status, `companyConfig.homepage.vision.initiatives[${index}].status`);
+  });
 
   assertString(issues, companyConfig.homepage.cta.headline, "companyConfig.homepage.cta.headline");
   assertString(issues, companyConfig.homepage.cta.description, "companyConfig.homepage.cta.description");

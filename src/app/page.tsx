@@ -3,8 +3,10 @@ import { Banner } from "@/components/Banner";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { TrustBar } from "@/components/socialproof/TrustBar";
-import { Features } from "@/components/Features";
-import { ProductShowcase } from "@/components/ProductShowcase";
+import { MissionSection } from "@/components/MissionSection";
+import { PillarsSection } from "@/components/PillarsSection";
+import { FeaturedProduct } from "@/components/FeaturedProduct";
+import { VisionSection } from "@/components/VisionSection";
 import { FAQs } from "@/components/FAQs";
 import { CallToAction } from "@/components/CallToAction";
 import { Footer } from "@/components/Footer";
@@ -30,9 +32,11 @@ export const metadata: Metadata = {
 
 const SECTION_COMPONENTS: Record<HomeSectionKey, ReactElement<{ id?: string }>> = {
   hero: <Hero />,
-  logos: <TrustBar />,
-  features: <Features />,
-  product: <ProductShowcase />,
+  mission: <MissionSection />,
+  pillars: <PillarsSection />,
+  featuredProduct: <FeaturedProduct />,
+  vision: <VisionSection />,
+  trustBar: <TrustBar />,
   faqs: <FAQs />,
   pricing: <Pricing />,
   cta: <CallToAction />,

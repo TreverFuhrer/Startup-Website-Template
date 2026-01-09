@@ -7,12 +7,12 @@ export const siteConfig: SiteConfig = {
   },
   siteUrl: "https://example.com",
   nav: [
-    { type: "anchor", label: "Logos", href: "/#customers", sectionId: "customers" },
-    { type: "anchor", label: "About", href: "/#about", sectionId: "about" },
-    { type: "anchor", label: "App", href: "/#app", sectionId: "app" },
-    { type: "anchor", label: "FAQs", href: "/#faqs", sectionId: "faqs" },
-    { type: "anchor", label: "Pricing", href: "/#pricing", sectionId: "pricing" },
-    { type: "page", label: "Product", href: "/product/app" },
+    { type: "anchor", label: "Mission", href: "/#mission", sectionId: "mission" },
+    { type: "anchor", label: "Pillars", href: "/#pillars", sectionId: "pillars" },
+    { type: "anchor", label: "Product", href: "/#featured", sectionId: "featured" },
+    { type: "anchor", label: "Vision", href: "/#vision", sectionId: "vision" },
+    { type: "anchor", label: "FAQ", href: "/#faqs", sectionId: "faqs" },
+    { type: "page", label: "App", href: "/product/app" },
   ],
   navbar: {
     sticky: true,

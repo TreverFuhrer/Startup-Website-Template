@@ -50,7 +50,16 @@ export type SiteConfig = {
   }>;
 };
 
-export type HomeSectionKey = "hero" | "logos" | "features" | "product" | "faqs" | "pricing" | "cta";
+export type HomeSectionKey =
+  | "hero"
+  | "mission"
+  | "pillars"
+  | "featuredProduct"
+  | "vision"
+  | "trustBar"
+  | "faqs"
+  | "pricing"
+  | "cta";
 
 export type HomeSectionConfig = {
   key: HomeSectionKey;
@@ -86,6 +95,35 @@ export type CompanyConfig = {
         label: string;
         href: string;
       };
+      secondaryCta: {
+        label: string;
+        href: string;
+      };
+    };
+    mission: {
+      title: string;
+      description: string;
+      points: Array<{
+        title: string;
+        description: string;
+      }>;
+    };
+    pillars: {
+      title: string;
+      description: string;
+    };
+    featuredProduct: {
+      eyebrow: string;
+      ctaLabel: string;
+    };
+    vision: {
+      title: string;
+      description: string;
+      initiatives: Array<{
+        title: string;
+        description: string;
+        status: string;
+      }>;
     };
     cta: {
       headline: string;

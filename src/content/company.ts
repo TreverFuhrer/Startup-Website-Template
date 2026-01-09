@@ -35,29 +35,84 @@ export const companyConfig: CompanyConfig = {
   homepage: {
     sections: [
       { key: "hero", enabled: true, navId: "top" },
-      { key: "logos", enabled: true, navId: "customers" },
-      { key: "features", enabled: true, navId: "about" },
-      { key: "product", enabled: true, navId: "app" },
+      { key: "mission", enabled: true, navId: "mission" },
+      { key: "pillars", enabled: true, navId: "pillars" },
+      { key: "featuredProduct", enabled: true, navId: "featured" },
+      { key: "vision", enabled: true, navId: "vision" },
+      { key: "trustBar", enabled: true, navId: "customers" },
       { key: "faqs", enabled: true, navId: "faqs" },
       { key: "pricing", enabled: false, navId: "pricing" },
       { key: "cta", enabled: true, navId: "cta" },
     ],
     hero: {
-      badge: "Badge Text",
-      headline: "Title",
-      subheadline: "Subtitle",
-      description: "Body copy that explains the core value in one punchy paragraph.",
+      badge: "Thoughtful by design",
+      headline: "We build thoughtful productivity software.",
+      subheadline: "For teams who care about clarity over clutter.",
+      description:
+        "We create calm, durable tools that help people focus on what matters and stay in flow for the long term.",
       primaryCta: {
-        label: "Primary CTA",
-        href: "#cta",
+        label: "See what we're building",
+        href: "/#featured",
+      },
+      secondaryCta: {
+        label: "Learn about us",
+        href: "/#mission",
       },
     },
+    mission: {
+      title: "A mission grounded in focus",
+      description:
+        "We believe productivity tools should feel quiet, intentional, and built for deep work. Our products are designed to reduce noise, not add to it.",
+      points: [
+        {
+          title: "Human-first software",
+          description: "Designed around how people actually think, plan, and build.",
+        },
+        {
+          title: "Clarity over volume",
+          description: "We prize thoughtful defaults, intentional workflows, and calm surfaces.",
+        },
+        {
+          title: "Long-term craft",
+          description: "We ship for longevity, not short-lived feature races.",
+        },
+      ],
+    },
+    pillars: {
+      title: "What we build",
+      description: "A set of pillars that guide everything we design and ship.",
+    },
+    featuredProduct: {
+      eyebrow: "Featured product",
+      ctaLabel: "Explore the product",
+    },
+    vision: {
+      title: "What comes next",
+      description: "A roadmap shaped by curiosity, care, and long-term ambition.",
+      initiatives: [
+        {
+          title: "Calm collaboration",
+          description: "Tools that help teams align without noisy status meetings.",
+          status: "In research",
+        },
+        {
+          title: "Shared accountability",
+          description: "Systems that keep work visible without micromanagement.",
+          status: "Exploring",
+        },
+        {
+          title: "Living knowledge",
+          description: "A home for decisions, context, and long-term memory.",
+          status: "Prototyping",
+        },
+      ],
+    },
     cta: {
-      headline: "Subscription",
-      description: "Body copy goes here.",
-      inputPlaceholder: "email@company.com",
+      headline: "Follow our journey",
+      description: "Join the waitlist for early updates, launches, and ideas we are exploring.",
+      inputPlaceholder: "you@company.com",
       primaryCta: {
-        label: "Primary CTA",
+        label: "Join the waitlist",
       },
     },
   },

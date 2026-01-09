@@ -183,9 +183,9 @@ const AWSIcon = () => {
 
       
       <div className="text-left p-6 mt-4">
-        {/* Feature card title + copy. */}
-        <h3 className="text-white text-2xl font-bold mb-2">Feature Title</h3>
-        <p className="text-white/70 text-lg">Short feature description that explains the benefit.</p>
+        {/* Pillar card title + copy. */}
+        <h3 className="text-white text-2xl font-bold mb-2">Pillar: Focus</h3>
+        <p className="text-white/70 text-lg">Design that protects deep work and clear priorities.</p>
       </div>
     </div>
   );
@@ -230,10 +230,10 @@ const BentoBox1 = () => {
             <div className="mb-4 px-6 mt-6">
               <div className="flex justify-between items-center mb-6 pb-2">
                 {/* Chart title goes here. */}
-                <h3 className="text-white/70 text-xl">Metric Title</h3>
+                <h3 className="text-white/70 text-xl">Long-term signal</h3>
                 <div className="flex items-center">
                   <div className="h-1 bg-white/20 w-8 rounded-lg"></div>
-                  <span className="ml-2 text-white/70 text-sm">Metric Label</span>
+                  <span className="ml-2 text-white/70 text-sm">Quality</span>
                 </div>
               </div>
               <div ref={chartRef} className="relative w-full mt-12" style={{ height: chartHeight }}>
@@ -285,8 +285,8 @@ const BentoBox1 = () => {
               </div>
             </div>
             <div className="text-left p-6 mt-4">
-              <h3 className="text-white text-2xl font-bold mb-2">Feature Title</h3>
-              <p className="text-white/70 text-lg">Short feature description that explains the outcome.</p>
+              <h3 className="text-white text-2xl font-bold mb-2">Pillar: Craft</h3>
+              <p className="text-white/70 text-lg">We ship deliberately and refine with care.</p>
             </div>
           </div>
         </CardWithEffect>
@@ -295,8 +295,8 @@ const BentoBox1 = () => {
             <div className="flex flex-col justify-center h-full">
               <LogoBeam />
               <div className="text-left p-6">
-                <h3 className="text-white text-2xl font-bold mb-2">Feature Title</h3>
-                <p className="text-white/70 text-lg">Short feature description that explains the outcome.</p>
+                <h3 className="text-white text-2xl font-bold mb-2">Pillar: Clarity</h3>
+                <p className="text-white/70 text-lg">Shared understanding without the noise.</p>
               </div>
             </div>
           </CardWithEffect>

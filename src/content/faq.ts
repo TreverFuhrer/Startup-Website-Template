@@ -9,20 +9,20 @@ export const faqSection: FaqSection = {
   title: "Company FAQ",
   items: [
     {
-      question: "Question 1",
-      answer: "Answer 1. Keep it short and helpful.",
+      question: "What kind of company are you building?",
+      answer: "We build calm, durable software that helps teams focus on meaningful work.",
     },
     {
-      question: "Question 2",
-      answer: "Answer 2. Add a few details to build trust.",
+      question: "Who are your products for?",
+      answer: "For teams that value clarity, thoughtful workflows, and long-term thinking.",
     },
     {
-      question: "Question 3",
-      answer: "Answer 3. Mention anything people always ask you.",
+      question: "When will the next product launch?",
+      answer: "We share updates through our newsletter and early-access waitlist.",
     },
     {
-      question: "Question 4",
-      answer: "Answer 4. Keep this clear and reassuring.",
+      question: "Can I get involved early?",
+      answer: "Yes. Join the waitlist to see what we are building and share feedback.",
     },
   ],
 };
