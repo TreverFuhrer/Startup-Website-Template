@@ -28,7 +28,6 @@ export const useActiveSection = (
 
   useEffect(() => {
     if (!enabled || sectionIds.length === 0) {
-      setActiveId("");
       return;
     }
 
@@ -97,13 +96,16 @@ export const useActiveSection = (
       return;
     }
 
-    setFromHash();
+    const rafId = window.requestAnimationFrame(setFromHash);
     window.addEventListener("hashchange", setFromHash);
 
-    return () => window.removeEventListener("hashchange", setFromHash);
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener("hashchange", setFromHash);
+    };
   }, [enabled, setFromHash]);
 
-  return activeId;
+  return enabled && sectionIds.length > 0 ? activeId : "";
 };
 
 export default useActiveSection;

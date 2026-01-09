@@ -1,79 +1,53 @@
 # Startup Landing Template
 
-A modern startup landing page template with a main hero, an about section, an app showcase, pricing, FAQs, and a conversion CTA. Built with Next.js, React, TypeScript, Tailwind CSS, and Framer Motion.
+A plug-and-play SaaS landing page with a data-driven homepage and product pages. Edit `src/content/*` and deploy.
 
----
+## Setup
 
-## Highlights
-- App Router layout with reusable sections
-- Tailwind CSS + CSS variables for fast theme swaps
-- Framer Motion for smooth interactions
-- Fully responsive layout
-- MIT licensed for personal and commercial use
-
----
-
-## Tech Stack
-- Framework: Next.js
-- UI: React
-- Language: TypeScript
-- Styling: Tailwind CSS
-- Animations: Framer Motion
-
----
-
-## Getting Started
-
-### Prerequisites
-- Node.js (v18 or later)
-- npm, yarn, or pnpm
-
-### Installation
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
 npm install
-```
-
-### Development
-```bash
+cp .env.example .env.local
 npm run dev
 ```
-Open http://localhost:3000 in your browser.
 
-### Build
-```bash
-npm run build
-npm run start
-```
+Open http://localhost:3000.
 
----
+## Edit content (no component edits)
 
-## Customization Guide (fast)
+- `src/content/site.ts` - brand, nav, socials, navbar config
+- `src/content/company.ts` - homepage section order + hero/CTA copy
+- `src/content/products.ts` - products + product page blocks
+- `src/content/pricing.ts` - pricing plans
+- `src/content/faq.ts` - homepage FAQs
+- `src/content/logos.ts` - logo list for the marquee
+- `public/og/default.png` - default social image (set per product via `ogImage`)
 
-Search for the placeholder labels like `Title`, `Subtitle`, and `Primary CTA` to replace copy quickly.
+Content is validated at build time. If something is missing, the build/dev server will throw a clear error.
 
-### Update section copy
-- `src/components/Hero.tsx`: main headline, subhead, hero CTA
-- `src/components/Features.tsx`: about section headline + body
-- `src/components/ProductShowcase.tsx`: app section headline + body + screenshot
-- `src/components/FAQs.tsx`: FAQ questions and answers
-- `src/components/pricing.tsx`: pricing card titles, prices, and features
-- `src/components/CallToAction.tsx`: final CTA text and email placeholder
-- `src/components/Footer.tsx`: company name + social links
+## Add a product
 
-### Update visuals
-- `src/app/globals.css`: edit CSS variables under `:root` for a new theme
-- `src/components/bentogrid.tsx`: change logos and chart data
-- `src/assets/images/`: swap any local images
+1. Add images to `src/assets/images` and (optionally) `public/og/<slug>.png`.
+2. Add a product entry in `src/content/products.ts` with a unique `slug` and `ogImage`.
+3. Fill in `page` blocks and set `page.order` to the blocks you want to render.
+4. (Optional) Add a nav link in `src/content/site.ts` to `/product/<slug>`.
 
-### Section order
-Edit the layout in `src/app/page.tsx`.
+The hero primary CTA uses the first product in the array, so reorder if needed.
 
----
+## Deploy to Vercel
+
+1. Push the repo to GitHub.
+2. Import the project in Vercel.
+3. Set `NEXT_PUBLIC_SITE_URL` to your production domain.
+4. Deploy (build command: `npm run build`).
+
+## Scripts
+
+- `npm run dev`
+- `npm run build`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run format`
 
 ## License
-MIT License
 
-Based on an MIT-licensed template originally created by Mudunuri Bhaskara Karthikeya Varma.
-Modified and maintained by Trever Fuhrer.
+MIT License

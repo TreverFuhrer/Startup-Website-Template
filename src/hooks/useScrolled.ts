@@ -12,7 +12,6 @@ export const useScrolled = ({ threshold = 12, enabled = true }: UseScrolledOptio
 
   useEffect(() => {
     if (!enabled) {
-      setScrolled(false);
       return;
     }
 
@@ -30,7 +29,7 @@ export const useScrolled = ({ threshold = 12, enabled = true }: UseScrolledOptio
     };
   }, [enabled, threshold]);
 
-  return scrolled;
+  return enabled ? scrolled : false;
 };
 
 export default useScrolled;

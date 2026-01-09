@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { MouseEvent } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutGroup, motion } from "framer-motion";
 import { LogoIcon, MenuIcon } from "./icons";
@@ -118,14 +119,15 @@ export const Navbar = () => {
       <Container>
         <div className="flex items-center justify-between py-4">
           {/* Swap this logo and label with your brand. */}
-          <a
+          <Link
             href="/#top"
             className="relative rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"
             aria-label="Brand"
+            onClick={(event) => handleAnchorClick(event, "/#top", "top")}
           >
             <div className="absolute bottom-0 top-2 w-full bg-[linear-gradient(to_right,var(--brand-2),var(--brand-1),var(--brand-3))] blur-md" />
             <LogoIcon className="relative mt-1 h-12 w-12" />
-          </a>
+          </Link>
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/30 sm:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--brand-1)"

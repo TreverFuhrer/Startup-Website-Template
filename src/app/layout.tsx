@@ -4,6 +4,7 @@ import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/content";
 import { getSiteUrl } from "@/lib/siteUrl";
+import { validateContent } from "@/content/validate";
 
 const siteName = siteConfig.brand.name;
 const defaultDescription = "Short description of your startup";
@@ -17,6 +18,8 @@ const monoFont = JetBrains_Mono({
   display: "swap",
   variable: "--font-mono",
 });
+
+validateContent();
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
