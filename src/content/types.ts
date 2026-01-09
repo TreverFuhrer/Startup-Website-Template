@@ -59,6 +59,22 @@ export type HomeSectionConfig = {
 };
 
 export type CompanyConfig = {
+  trustBar: {
+    mode: "integrations" | "logos" | "metrics" | "off";
+    heading: string;
+    integrations: Array<{
+      name: string;
+      icon: StaticImageData;
+    }>;
+    logos: Array<{
+      name: string;
+      icon: StaticImageData;
+    }>;
+    metrics: Array<{
+      label: string;
+      value: string;
+    }>;
+  };
   homepage: {
     sections: HomeSectionConfig[];
     hero: {

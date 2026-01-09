@@ -15,11 +15,13 @@ import { useScrolled } from "@/hooks/useScrolled";
 export const Navbar = () => {
   const navItems = siteConfig.nav;
   const navbarConfig = siteConfig.navbar;
-  const enabledSectionIds = companyConfig.homepage.sections
-    .filter((section) => section.enabled)
-    .map((section) => section.navId);
-  const visibleNavItems = navItems.filter(
-    (item) => item.type !== "anchor" || enabledSectionIds.includes(item.sectionId),
+  const enabledSectionIds = useMemo(
+    () => companyConfig.homepage.sections.filter((section) => section.enabled).map((section) => section.navId),
+    [],
+  );
+  const visibleNavItems = useMemo(
+    () => navItems.filter((item) => item.type !== "anchor" || enabledSectionIds.includes(item.sectionId)),
+    [enabledSectionIds, navItems],
   );
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -27,10 +29,14 @@ export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const firstMobileLinkRef = useRef<HTMLAnchorElement | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
-  const sectionIds = visibleNavItems
-    .filter((item) => item.type === "anchor")
-    .map((item) => item.sectionId)
-    .filter((id): id is string => Boolean(id));
+  const sectionIds = useMemo(
+    () =>
+      visibleNavItems
+        .filter((item) => item.type === "anchor")
+        .map((item) => item.sectionId)
+        .filter((id): id is string => Boolean(id)),
+    [visibleNavItems],
+  );
   const activeId = useActiveSection(sectionIds, {
     enabled: highlightEnabled,
     offset: navbarConfig.sticky ? 96 : 0,

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Banner } from "@/components/Banner";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { LogoTicker } from "@/components/LogoTicker";
+import { TrustBar } from "@/components/socialproof/TrustBar";
 import { Features } from "@/components/Features";
 import { ProductShowcase } from "@/components/ProductShowcase";
 import { FAQs } from "@/components/FAQs";
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 
 const SECTION_COMPONENTS: Record<HomeSectionKey, ReactElement<{ id?: string }>> = {
   hero: <Hero />,
-  logos: <LogoTicker />,
+  logos: <TrustBar />,
   features: <Features />,
   product: <ProductShowcase />,
   faqs: <FAQs />,

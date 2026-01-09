@@ -23,6 +23,7 @@ const blockKeys: ProductPageBlockKey[] = [
   "faq",
   "finalCta",
 ];
+const trustBarModes = ["integrations", "logos", "metrics", "off"] as const;
 
 const isNonEmptyString = (value: unknown): value is string =>
   typeof value === "string" && value.trim().length > 0;
@@ -52,6 +53,12 @@ const assertArray = (issues: Issue[], value: unknown, path: string) => {
 const assertNumber = (issues: Issue[], value: unknown, path: string) => {
   if (typeof value !== "number" || !Number.isFinite(value)) {
     addIssue(issues, path, "must be a number");
+  }
+};
+
+const assertArrayValue = (issues: Issue[], value: unknown, path: string) => {
+  if (!Array.isArray(value)) {
+    addIssue(issues, path, "must be an array");
   }
 };
 
@@ -122,6 +129,49 @@ export const validateContent = () => {
   assertString(issues, companyConfig.homepage.cta.description, "companyConfig.homepage.cta.description");
   assertString(issues, companyConfig.homepage.cta.inputPlaceholder, "companyConfig.homepage.cta.inputPlaceholder");
   assertString(issues, companyConfig.homepage.cta.primaryCta.label, "companyConfig.homepage.cta.primaryCta.label");
+
+  if (!trustBarModes.includes(companyConfig.trustBar.mode)) {
+    addIssue(issues, "companyConfig.trustBar.mode", "must be integrations, logos, metrics, or off");
+  }
+  assertString(issues, companyConfig.trustBar.heading, "companyConfig.trustBar.heading");
+  assertArrayValue(issues, companyConfig.trustBar.integrations, "companyConfig.trustBar.integrations");
+  assertArrayValue(issues, companyConfig.trustBar.logos, "companyConfig.trustBar.logos");
+  assertArrayValue(issues, companyConfig.trustBar.metrics, "companyConfig.trustBar.metrics");
+
+  const trustIntegrations = Array.isArray(companyConfig.trustBar.integrations)
+    ? companyConfig.trustBar.integrations
+    : [];
+  const trustLogos = Array.isArray(companyConfig.trustBar.logos) ? companyConfig.trustBar.logos : [];
+  const trustMetrics = Array.isArray(companyConfig.trustBar.metrics) ? companyConfig.trustBar.metrics : [];
+
+  if (companyConfig.trustBar.mode === "integrations" && trustIntegrations.length === 0) {
+    addIssue(issues, "companyConfig.trustBar.integrations", "must include at least one integration");
+  }
+  if (companyConfig.trustBar.mode === "logos" && trustLogos.length === 0) {
+    addIssue(issues, "companyConfig.trustBar.logos", "must include at least one logo");
+  }
+  if (companyConfig.trustBar.mode === "metrics" && trustMetrics.length === 0) {
+    addIssue(issues, "companyConfig.trustBar.metrics", "must include at least one metric");
+  }
+
+  trustIntegrations.forEach((item, index) => {
+    assertString(issues, item.name, `companyConfig.trustBar.integrations[${index}].name`);
+    if (!item.icon) {
+      addIssue(issues, `companyConfig.trustBar.integrations[${index}].icon`, "must be set");
+    }
+  });
+
+  trustLogos.forEach((item, index) => {
+    assertString(issues, item.name, `companyConfig.trustBar.logos[${index}].name`);
+    if (!item.icon) {
+      addIssue(issues, `companyConfig.trustBar.logos[${index}].icon`, "must be set");
+    }
+  });
+
+  trustMetrics.forEach((item, index) => {
+    assertString(issues, item.label, `companyConfig.trustBar.metrics[${index}].label`);
+    assertString(issues, item.value, `companyConfig.trustBar.metrics[${index}].value`);
+  });
 
   assertArray(issues, products, "products");
 
