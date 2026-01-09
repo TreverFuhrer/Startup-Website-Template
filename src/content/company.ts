@@ -1,3 +1,6 @@
+import appScreen from "../assets/images/app-screen.png";
+import helixImage from "../assets/images/helix2.png";
+import emojiImage from "../assets/images/emojistar.png";
 import acmeLogo from "../assets/images/acme.png";
 import quantumLogo from "../assets/images/quantum.png";
 import echoLogo from "../assets/images/echo.png";
@@ -7,6 +10,16 @@ import apexLogo from "../assets/images/apex.png";
 import type { CompanyConfig } from "./types";
 
 export const companyConfig: CompanyConfig = {
+  heroVisual: {
+    primary: {
+      src: helixImage,
+      alt: "Helix accent",
+    },
+    secondary: {
+      src: emojiImage,
+      alt: "Star accent",
+    },
+  },
   trustBar: {
     mode: "integrations",
     heading: "Trusted by modern teams and their tools",
@@ -46,8 +59,8 @@ export const companyConfig: CompanyConfig = {
     ],
     hero: {
       badge: "Thoughtful by design",
-      headline: "We build thoughtful productivity software.",
-      subheadline: "For teams who care about clarity over clutter.",
+      headline: "Thoughtful productivity software",
+      subheadline: "for focused teams.",
       description:
         "We create calm, durable tools that help people focus on what matters and stay in flow for the long term.",
       primaryCta: {
@@ -85,6 +98,10 @@ export const companyConfig: CompanyConfig = {
     featuredProduct: {
       eyebrow: "Featured product",
       ctaLabel: "Explore the product",
+      previewImage: {
+        src: appScreen,
+        alt: "Product preview",
+      },
     },
     vision: {
       title: "What comes next",

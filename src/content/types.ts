@@ -68,6 +68,16 @@ export type HomeSectionConfig = {
 };
 
 export type CompanyConfig = {
+  heroVisual: {
+    primary: {
+      src: StaticImageData;
+      alt: string;
+    };
+    secondary?: {
+      src: StaticImageData;
+      alt: string;
+    };
+  };
   trustBar: {
     mode: "integrations" | "logos" | "metrics" | "off";
     heading: string;
@@ -115,6 +125,10 @@ export type CompanyConfig = {
     featuredProduct: {
       eyebrow: string;
       ctaLabel: string;
+      previewImage: {
+        src: StaticImageData;
+        alt: string;
+      };
     };
     vision: {
       title: string;
@@ -248,6 +262,10 @@ export type Product = {
   name: string;
   tagline: string;
   ogImage: string;
+  screenshots: Array<{
+    src: StaticImageData;
+    alt: string;
+  }>;
   primaryCta: {
     label: string;
     href: string;

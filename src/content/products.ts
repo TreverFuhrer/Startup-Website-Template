@@ -3,124 +3,128 @@ import messageScreen from "../assets/images/message.png";
 import cursorScreen from "../assets/images/cursor.png";
 import type { Product } from "./types";
 
+const appScreenshots = [
+  { src: appScreen, alt: "Project overview" },
+  { src: messageScreen, alt: "Decision notes" },
+  { src: cursorScreen, alt: "Review workflow" },
+];
+
 export const products: Product[] = [
   {
     slug: "app",
-    name: "Title",
-    tagline: "App section body copy goes here.",
+    name: "Lumen",
+    tagline: "A calm mobile workspace for focused teams.",
     ogImage: "/og/default.png",
+    screenshots: appScreenshots,
     primaryCta: {
-      label: "Primary CTA",
+      label: "Explore the app",
       href: "/product/app",
     },
     page: {
       order: ["hero", "screenshots", "howItWorks", "featureGrid", "useCases", "pricing", "faq", "finalCta"],
       hero: {
         id: "overview",
-        eyebrow: "Product",
-        title: "Title",
-        description: "A clear summary of what the product does for teams.",
+        eyebrow: "Mobile app",
+        title: "Lumen keeps your team in flow, wherever work happens.",
+        description: "Align priorities, capture decisions, and move projects forward without the noise.",
         primaryCta: {
-          label: "Primary CTA",
+          label: "Get the app",
           href: "#get-started",
         },
         secondaryCta: {
-          label: "View pricing",
-          href: "/#pricing",
+          label: "See screenshots",
+          href: "#screenshots",
         },
         image: {
           src: appScreen,
-          alt: "App dashboard",
+          alt: "Lumen mobile workspace",
         },
       },
       screenshots: {
         id: "screenshots",
-        title: "Screenshots",
-        description: "A quick look at the key surfaces people use every day.",
+        title: "Designed for calm, focused work",
+        description: "Three key surfaces that keep priorities clear and collaboration lightweight.",
         items: [
           {
-            src: appScreen,
-            alt: "Main dashboard view",
-            caption: "Main dashboard view",
+            ...appScreenshots[0],
+            caption: "A single view of priorities, timelines, and owners.",
           },
           {
-            src: messageScreen,
-            alt: "Collaboration view",
-            caption: "Collaboration view",
+            ...appScreenshots[1],
+            caption: "Capture decisions and context without long threads.",
           },
           {
-            src: cursorScreen,
-            alt: "Review workflow view",
-            caption: "Review workflow view",
+            ...appScreenshots[2],
+            caption: "Move reviews forward with lightweight approvals.",
           },
         ],
       },
       howItWorks: {
         id: "how-it-works",
-        title: "How it works",
-        description: "A simple flow that keeps work moving without extra handoffs.",
+        title: "How Lumen works",
+        description: "A simple loop that keeps teams aligned without status meetings.",
         steps: [
           {
-            title: "Connect your data",
-            description: "Pull in the sources you already use and keep them in sync.",
+            title: "Set the focus",
+            description: "Define the work that matters this week and assign owners.",
           },
           {
-            title: "Configure the workflow",
-            description: "Define roles, approvals, and triggers in a single place.",
+            title: "Track progress lightly",
+            description: "Check in with quick updates instead of long meetings.",
           },
           {
-            title: "Track every change",
-            description: "Monitor progress and keep everyone aligned in real time.",
+            title: "Ship with clarity",
+            description: "Close the loop with decisions, handoffs, and next steps.",
           },
         ],
       },
       featureGrid: {
         id: "features",
-        title: "Feature grid",
-        description: "Foundational capabilities teams rely on for daily work.",
+        title: "Built for focus",
+        description: "Benefits that protect attention and keep teams moving.",
         features: [
           {
-            title: "Shared timeline",
-            description: "Keep milestones and ownership visible for every project.",
+            title: "Fewer meetings",
+            description: "Stay aligned with short async updates that respect deep work.",
           },
           {
-            title: "Audit-ready history",
-            description: "Capture decisions and approvals in one searchable log.",
+            title: "Clear priorities",
+            description: "Highlight what matters most so teams never lose the thread.",
           },
           {
-            title: "Team permissions",
-            description: "Grant access by role without overexposing sensitive data.",
+            title: "Context that sticks",
+            description: "Keep decisions and rationale close to the work.",
           },
           {
-            title: "Automated alerts",
-            description: "Notify the right people when something needs attention.",
+            title: "Lightweight accountability",
+            description: "Owners and due dates are visible without micromanagement.",
           },
           {
-            title: "Custom fields",
-            description: "Adapt the schema to match how your org works.",
+            title: "Mobile-first clarity",
+            description: "All the essentials without the overload of desktop dashboards.",
           },
           {
-            title: "Export-ready reports",
-            description: "Share status updates without manual formatting.",
+            title: "Reliable momentum",
+            description: "Progress stays visible even when plans shift.",
           },
         ],
       },
       useCases: {
         id: "use-cases",
-        title: "Use cases",
-        description: "Built for teams that coordinate fast-moving work.",
+        title: "Where teams use Lumen",
+        description: "Ideal for fast-moving teams that still value calm.",
         items: [
           {
-            title: "Launch readiness",
-            description: "Align marketing, product, and support on every milestone.",
+            title: "Product launches",
+            description: "Coordinate across functions without a flood of status calls.",
           },
           {
             title: "Client onboarding",
-            description: "Standardize handoffs and keep timelines consistent.",
+            description: "Keep every handoff clear with lightweight check-ins.",
           },
           {
-            title: "Compliance reviews",
-            description: "Track approvals and evidence without extra tools.",
+            title: "Leadership alignment",
+            description: "Give leaders a clear snapshot without extra reporting.",
           },
         ],
       },
@@ -129,32 +133,32 @@ export const products: Product[] = [
       },
       faq: {
         id: "faq",
-        title: "Product FAQ",
+        title: "Lumen FAQ",
         items: [
           {
             question: "How long does setup take?",
-            answer: "Most teams complete the initial setup in under an hour.",
+            answer: "Most teams can set up their workspace in under 30 minutes.",
           },
           {
-            question: "Can we customize workflows?",
-            answer: "Yes. Each workflow is configurable by team and project.",
+            question: "Is Lumen mobile-only?",
+            answer: "Lumen is mobile-first, with a web companion for deeper planning.",
           },
           {
             question: "What support is available?",
-            answer: "Email support is included, with priority options for teams.",
+            answer: "Email support is included with priority options for larger teams.",
           },
         ],
       },
       finalCta: {
         id: "get-started",
-        title: "Ready to get started?",
-        description: "Set up your workspace and invite the team when you are ready.",
+        title: "Ready to try Lumen?",
+        description: "Start with a focused workspace and invite your team when you're ready.",
         primaryCta: {
-          label: "Primary CTA",
+          label: "Start free",
           href: "/#pricing",
         },
         secondaryCta: {
-          label: "Talk to sales",
+          label: "Talk to us",
           href: "mailto:hello@example.com",
         },
       },

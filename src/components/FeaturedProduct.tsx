@@ -14,8 +14,9 @@ type FeaturedProductProps = {
 
 export const FeaturedProduct = ({ id = "featured" }: FeaturedProductProps) => {
   const featuredProduct = products[0];
-  const featuredScreenshot = featuredProduct?.page.screenshots.items[0];
   const { featuredProduct: featuredConfig } = companyConfig.homepage;
+  const previewImage = featuredConfig.previewImage;
+  const fallbackPreview = featuredProduct?.screenshots[0] ?? featuredProduct?.page.screenshots.items[0];
   const ctaLabel = featuredConfig.ctaLabel;
   const ctaHref = featuredProduct ? `/product/${featuredProduct.slug}` : "#";
 
@@ -52,8 +53,8 @@ export const FeaturedProduct = ({ id = "featured" }: FeaturedProductProps) => {
         <AppScreenshotScrollEffect className="flex justify-center">
           {/* Swap this image with a product screenshot. */}
           <Image
-            src={featuredScreenshot?.src ?? appScreen}
-            alt={featuredScreenshot?.alt ?? "Product preview"}
+            src={previewImage?.src ?? fallbackPreview?.src ?? appScreen}
+            alt={previewImage?.alt ?? fallbackPreview?.alt ?? "Product preview"}
             className="mt-14"
             sizes="(min-width: 1024px) 720px, (min-width: 640px) 80vw, 92vw"
           />

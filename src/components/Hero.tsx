@@ -1,8 +1,6 @@
 "use client"
 import CursorImage from '../assets/images/cursor.png'
 import MessageImage from '../assets/images/message.png'
-import HelixImage from "../assets/images/helix2.png";
-import EmojiImage from "../assets/images/emojistar.png";
 import Image from 'next/image';
 import { motion } from "framer-motion";
 import { AnimatedGradientTextDemo } from './animatedtext';
@@ -17,6 +15,7 @@ type HeroProps = {
 
 export const Hero = ({ id = "top" }: HeroProps) => {
   const { hero } = companyConfig.homepage;
+  const { heroVisual } = companyConfig;
   const missionHighlights = companyConfig.homepage.mission.points.slice(0, 3);
 
   return (
@@ -79,17 +78,19 @@ export const Hero = ({ id = "top" }: HeroProps) => {
                   ))}
                 </div>
                 <Image
-                  src={HelixImage}
-                  alt=""
+                  src={heroVisual.primary.src}
+                  alt={heroVisual.primary.alt}
                   className="pointer-events-none absolute -right-8 -top-10 w-36 opacity-70"
                   aria-hidden="true"
                 />
-                <Image
-                  src={EmojiImage}
-                  alt=""
-                  className="pointer-events-none absolute -bottom-6 left-4 w-20 opacity-80"
-                  aria-hidden="true"
-                />
+                {heroVisual.secondary ? (
+                  <Image
+                    src={heroVisual.secondary.src}
+                    alt={heroVisual.secondary.alt}
+                    className="pointer-events-none absolute -bottom-6 left-4 w-20 opacity-80"
+                    aria-hidden="true"
+                  />
+                ) : null}
               </div>
               <motion.div className="absolute -left-6 top-12 hidden sm:block" drag dragSnapToOrigin>
                 <Image src={CursorImage} alt="" height={160} width={160} className="max-w-none" draggable="false" aria-hidden="true" />

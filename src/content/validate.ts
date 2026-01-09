@@ -56,6 +56,28 @@ const assertNumber = (issues: Issue[], value: unknown, path: string) => {
   }
 };
 
+const assertImage = (issues: Issue[], value: unknown, path: string) => {
+  if (typeof value === "string") {
+    return;
+  }
+
+  if (value && typeof value === "object" && "src" in value) {
+    const srcValue = (value as { src?: unknown }).src;
+    if (typeof srcValue === "string") {
+      return;
+    }
+
+    if (srcValue && typeof srcValue === "object" && "src" in srcValue) {
+      const nestedSrc = (srcValue as { src?: unknown }).src;
+      if (typeof nestedSrc === "string") {
+        return;
+      }
+    }
+  }
+
+  addIssue(issues, path, "must be an imported image");
+};
+
 const assertArrayValue = (issues: Issue[], value: unknown, path: string) => {
   if (!Array.isArray(value)) {
     addIssue(issues, path, "must be an array");
@@ -127,6 +149,13 @@ export const validateContent = () => {
   assertString(issues, companyConfig.homepage.hero.secondaryCta.label, "companyConfig.homepage.hero.secondaryCta.label");
   assertString(issues, companyConfig.homepage.hero.secondaryCta.href, "companyConfig.homepage.hero.secondaryCta.href");
 
+  assertImage(issues, companyConfig.heroVisual?.primary, "companyConfig.heroVisual.primary");
+  assertString(issues, companyConfig.heroVisual?.primary?.alt, "companyConfig.heroVisual.primary.alt");
+  if (companyConfig.heroVisual?.secondary) {
+    assertImage(issues, companyConfig.heroVisual.secondary, "companyConfig.heroVisual.secondary");
+    assertString(issues, companyConfig.heroVisual.secondary.alt, "companyConfig.heroVisual.secondary.alt");
+  }
+
   assertString(issues, companyConfig.homepage.mission.title, "companyConfig.homepage.mission.title");
   assertString(issues, companyConfig.homepage.mission.description, "companyConfig.homepage.mission.description");
   assertArray(issues, companyConfig.homepage.mission.points, "companyConfig.homepage.mission.points");
@@ -143,6 +172,16 @@ export const validateContent = () => {
 
   assertString(issues, companyConfig.homepage.featuredProduct.eyebrow, "companyConfig.homepage.featuredProduct.eyebrow");
   assertString(issues, companyConfig.homepage.featuredProduct.ctaLabel, "companyConfig.homepage.featuredProduct.ctaLabel");
+  assertImage(
+    issues,
+    companyConfig.homepage.featuredProduct.previewImage,
+    "companyConfig.homepage.featuredProduct.previewImage",
+  );
+  assertString(
+    issues,
+    companyConfig.homepage.featuredProduct.previewImage?.alt,
+    "companyConfig.homepage.featuredProduct.previewImage.alt",
+  );
 
   assertString(issues, companyConfig.homepage.vision.title, "companyConfig.homepage.vision.title");
   assertString(issues, companyConfig.homepage.vision.description, "companyConfig.homepage.vision.description");
@@ -213,6 +252,7 @@ export const validateContent = () => {
     assertString(issues, product.name, `products[${index}].name`);
     assertString(issues, product.tagline, `products[${index}].tagline`);
     assertString(issues, product.ogImage, `products[${index}].ogImage`);
+    assertArray(issues, product.screenshots, `products[${index}].screenshots`);
     assertString(issues, product.primaryCta.label, `products[${index}].primaryCta.label`);
     assertString(issues, product.primaryCta.href, `products[${index}].primaryCta.href`);
 
@@ -222,6 +262,12 @@ export const validateContent = () => {
       }
       seenSlugs.add(product.slug);
     }
+
+    const productScreenshots = Array.isArray(product.screenshots) ? product.screenshots : [];
+    productScreenshots.forEach((shot, shotIndex) => {
+      assertImage(issues, shot, `products[${index}].screenshots[${shotIndex}]`);
+      assertString(issues, shot.alt, `products[${index}].screenshots[${shotIndex}].alt`);
+    });
 
     assertArray(issues, product.page.order, `products[${index}].page.order`);
     const seenBlocks = new Set<ProductPageBlockKey>();
