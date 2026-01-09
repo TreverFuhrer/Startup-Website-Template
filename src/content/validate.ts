@@ -407,6 +407,13 @@ export const validateContent = () => {
       product.page.finalCta.secondaryCta?.href,
       `products[${index}].page.finalCta.secondaryCta.href`,
     );
+
+    assertArray(issues, product.page.nav, `products[${index}].page.nav`);
+    const productNav = Array.isArray(product.page.nav) ? product.page.nav : [];
+    productNav.forEach((item, navIndex) => {
+      assertString(issues, item.id, `products[${index}].page.nav[${navIndex}].id`);
+      assertString(issues, item.label, `products[${index}].page.nav[${navIndex}].label`);
+    });
   });
 
   assertString(issues, pricingSection.title, "pricingSection.title");

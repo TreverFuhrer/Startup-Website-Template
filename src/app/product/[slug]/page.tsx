@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Banner } from "@/components/Banner";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { ProductSubnav } from "@/components/product/ProductSubnav";
 import { ProductSections } from "@/components/product/ProductSections";
 import { getProduct } from "@/lib/getProduct";
 import { products, siteConfig } from "@/content";
@@ -77,6 +78,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     <div>
       <Banner />
       <Navbar />
+      <ProductSubnav product={product} />
       <div className="overflow-x-hidden">
         <main>
           <ProductSections product={product} />

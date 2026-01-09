@@ -246,6 +246,10 @@ export type ProductPageFinalCta = {
 };
 
 export type ProductPageConfig = {
+  nav: Array<{
+    id: string;
+    label: string;
+  }>;
   order: ProductPageBlockKey[];
   hero: ProductPageHero;
   screenshots: ProductPageScreenshots;

@@ -21,6 +21,16 @@ export const products: Product[] = [
       href: "/product/app",
     },
     page: {
+      nav: [
+        { id: "overview", label: "Overview" },
+        { id: "screenshots", label: "Screens" },
+        { id: "how-it-works", label: "How it works" },
+        { id: "features", label: "Benefits" },
+        { id: "use-cases", label: "Use cases" },
+        { id: "pricing", label: "Pricing" },
+        { id: "faq", label: "FAQ" },
+        { id: "get-started", label: "Get started" },
+      ],
       order: ["hero", "screenshots", "howItWorks", "featureGrid", "useCases", "pricing", "faq", "finalCta"],
       hero: {
         id: "overview",
