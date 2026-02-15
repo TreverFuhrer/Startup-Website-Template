@@ -2,6 +2,10 @@
 
 A plug-and-play startup site with a company homepage and app-centric product pages. Edit `src/content/*` and deploy.
 
+### Hey Recruiters
+50% aura coded, so don't test me on anything in this repo :)
+Just made this to help others speed up the build process!
+
 Demo: https://startup-website-template-zeta.vercel.app/product/app
 
 ## Setup
